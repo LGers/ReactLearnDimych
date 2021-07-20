@@ -1,0 +1,13 @@
+.header {
+  background: #707070;
+    grid-area: header;
+}
+/*img{  
+  width: 140px;
+}*/
+
+.mainContent {
+  background: #ABABAB;
+	grid-area: mainContent;   
+  color: white;
+}

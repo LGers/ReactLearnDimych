@@ -1,0 +1,17 @@
+.navBar  {
+  background: #363535;
+
+	grid-area: nav; 
+  color: darkseagreen;
+}
+/* a .navItem {
+  color:black;
+} */
+.navBar a{
+
+  color: darkseagreen;
+}  
+.navItem { /* Add 'a' for chango color*/
+
+  color: black;
+}  
