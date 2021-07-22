@@ -1,17 +1,20 @@
 .navBar  {
   background: #363535;
-
 	grid-area: nav; 
   color: darkseagreen;
 }
-/* a .navItem {
+ /* a.navItem {
   color:black;
-} */
-.navBar a{
-
+}  */
+.navBar{
   color: darkseagreen;
 }  
 .navItem { /* Add 'a' for chango color*/
-
-  color: black;
+  color: rgb(233, 113, 0);
 }  
+.navItem_test a {
+  color:rgb(70, 96, 214);
+} 
+.navItem.active {
+  color: red;
+}

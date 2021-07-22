@@ -1,16 +1,21 @@
-//import logo from './logo.svg';
+import React from 'react'
 import './App.css';
-import Header from './Components/Header.jsx'
-import NavBar from './Components/NavBar.jsx'
-import ProfilePage from './Components/ProfilePage'
+import Header from './Components/header/Header'
+import NavBar from './Components/navBar/NavBar'
+import ProfilePage from './Components/profilePage/ProfilePage'
+import Dialogs from './Components/Dialogs/Dialogs'
 
-const App = () => {
-  return (
-    <div className='appWrapper'>
-      <Header />
-      <NavBar />
-      <ProfilePage />
-    </div >);
+const App = (props) => {
+    return (
+        <div className='appWrapper'>
+            <Header/>
+            <NavBar/>
+            {/* <Dialogs /> */}
+            {/*<ProfilePage />*/}
+            <div className='app-wrapper-content'>
+                <Dialogs />
+            </div>
+        </div>);
 }
 
 export default App;
