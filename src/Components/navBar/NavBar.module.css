@@ -11,6 +11,7 @@
 }  
 .navItem { /* Add 'a' for chango color*/
   color: rgb(233, 113, 0);
+  text-decoration: none;
 }  
 .navItem_test a {
   color:rgb(70, 96, 214);

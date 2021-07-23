@@ -1,11 +1,10 @@
 import st from './NavBar.module.css';
 
+
 console.log(st);
 const NavBar = () => {
   return (
-
     <div className={st.navBar}>
-      {/* <p className={st.navItem}>Hi its p teg</p> */}
       <div className={`${st.navItem} ${st.active}`}>
         <a href="/profile">Profile</a>
       </div>
@@ -13,16 +12,15 @@ const NavBar = () => {
         <a href="/messages">Messages</a>
       </div>
       <div className={st.navItem}>
-        <a>News</a>
+        <a href="/news">News</a>
       </div>
       <div className={st.navItem}>
-        <a>Music</a>
+        <a href="/music">Music</a>
       </div>
       <div className={st.navItem}>
-        <a>Settings</a>
+        <a href="/settings">Settings</a>
       </div>
     </div>
   )
 };
-
 export default NavBar;
