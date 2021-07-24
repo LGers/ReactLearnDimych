@@ -1,3 +1,13 @@
+h3 {
+    padding: 10px;
+}
+.postsBlock {
+    padding: 10px;
+    color: darkred;
+}
+.addPost {
+    padding: 10px;
+}
 /* .myPostsItem {
   background: #ABABAB;
 	grid-area: mainContent;   

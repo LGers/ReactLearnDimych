@@ -1,32 +1,42 @@
-import Post from './Post/Post';
 import st from './ProfileMyPosts.module.css';
+import MyPosts from "./Post/MyPosts";
 
+let dataMsgs=[
+    [message: 'hi', likesCount: '15'],
+    [message: 'How are You', likesCount: '5'],
+    [message: 'I\'m a best react production', likesCount: '3'],
+    [message: 'I\'m a best react production', likesCount: '7'],
+    [message: 'I\'m a best react production', likesCount: '6']
+];
 const ProfileMyPosts = () => {
-  return (
-    <div>
-      <div>My posts Name of me</div>
-      <div /*className={st.myPostsItem}*/>
-        <textarea></textarea>
-        <button>Add post</button>
-      </div>
-      <div className={st.Posts}>
-        <Post message='Hi'/>
-        <Post message='How are You'/>
-        <Post message="I'm a best react production"/>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        {/* <div className={st.myPostsItem}>Post 2</div>
-        <div className={st.myPostsItem}>Post 3</div>
-        <div className={st.myPostsItem}>Post 4</div>
-        <div className={st.myPostsItem}>Post 5</div>
-        <div className={st.myPostsItem}>Post 6</div>
-        <div className={st.myPostsItem}>Post 7</div> */}
-      </div>
-    </div>
-  )
+    return (
+        <div>
+            <div><h3>My posts Name of me</h3></div>
+            <div className={st.addPost}>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
+            </div>
+            <div className={st.Posts}>
+                <MyPosts message='Hi' likesCount='10'/>
+                <MyPosts className={st.postsBlock} message='How are You' likesCount='15'/>
+                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='5'/>
+                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='3'/>
+                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='7'/>
+                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='6'/>
+            </div>
+        </div>
+    )
 };
 
 export default ProfileMyPosts;
+
+// <MyPosts className ={st.postsBlock} message='Hi' likesCount='1'/>
+// <MyPosts message='How are You???' likesCount='1'/>
+// <MyPosts message="I'm a best react production" likesCount='1'/>
+// <MyPosts message="I'm a best react production" likesCount='1'/>
+// <MyPosts message="I'm a best react production" likesCount='1'/>
+// <MyPosts message="I'm a best react production" likesCount='1'/>

@@ -1,3 +1,25 @@
-.content {
- color:hotpink;
+.dialogs {
+ display: grid;
+ grid-template-columns: 2fr 10fr;
+ /*grid-gap: 5px;*/
+}
+
+.a{
+ text-decoration: none;
+}
+.dialogsItems {
+ padding: 10px;
+}
+.dialogsItems .active{
+ text-decoration: none;
+ color: red;
+}
+/*.dialogsItems .dialog {*/
+
+/*}*/
+.messages {
+ padding: 10px;
+}
+.messages .message {
+
 }
