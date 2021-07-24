@@ -7,6 +7,10 @@ h2 {
 .decriptionBlock {
     padding: 10px;
 }
-impg {
+img {
+    padding: 0;
+}
+.mainImgBlock img{
+    width: 890px;
     padding: 0;
 }

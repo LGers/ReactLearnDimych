@@ -1,14 +1,16 @@
 import st from './ProfileMyPosts.module.css';
 import MyPosts from "./Post/MyPosts";
 
-let dataMsgs=[
-    [message: 'hi', likesCount: '15'],
-    [message: 'How are You', likesCount: '5'],
-    [message: 'I\'m a best react production', likesCount: '3'],
-    [message: 'I\'m a best react production', likesCount: '7'],
-    [message: 'I\'m a best react production', likesCount: '6']
-];
+
 const ProfileMyPosts = () => {
+    let postData = [
+        {message: 'hi', likesCount: 15},
+        {message: 'How are You', likesCount: 5},
+        {message: 'I\'m a best react production', likesCount: 3},
+        {message: 'I\'m a best react production1', likesCount: 7},
+        {message: 'I\'m a best react production4', likesCount: 6}
+    ]
+    let postEl = postData.map(p => <MyPosts message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <div><h3>My posts Name of me</h3></div>
@@ -21,22 +23,10 @@ const ProfileMyPosts = () => {
                 </div>
             </div>
             <div className={st.Posts}>
-                <MyPosts message='Hi' likesCount='10'/>
-                <MyPosts className={st.postsBlock} message='How are You' likesCount='15'/>
-                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='5'/>
-                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='3'/>
-                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='7'/>
-                <MyPosts className={st.postsBlock} message="I'm a best react production" likesCount='6'/>
+                {postEl}
             </div>
         </div>
     )
 };
 
 export default ProfileMyPosts;
-
-// <MyPosts className ={st.postsBlock} message='Hi' likesCount='1'/>
-// <MyPosts message='How are You???' likesCount='1'/>
-// <MyPosts message="I'm a best react production" likesCount='1'/>
-// <MyPosts message="I'm a best react production" likesCount='1'/>
-// <MyPosts message="I'm a best react production" likesCount='1'/>
-// <MyPosts message="I'm a best react production" likesCount='1'/>
