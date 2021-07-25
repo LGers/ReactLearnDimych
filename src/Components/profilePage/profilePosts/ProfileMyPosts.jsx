@@ -1,5 +1,6 @@
 import st from './ProfileMyPosts.module.css';
 import MyPosts from "./Post/MyPosts";
+import {dataPostsJs} from './../../../data';
 
 
 const ProfileMyPosts = () => {
@@ -10,7 +11,8 @@ const ProfileMyPosts = () => {
         {message: 'I\'m a best react production1', likesCount: 7},
         {message: 'I\'m a best react production4', likesCount: 6}
     ]
-    let postEl = postData.map(p => <MyPosts message={p.message} likesCount={p.likesCount}/>)
+    //let postEl = postData.map(p => <MyPosts message={p.message} likesCount={p.likesCount}/>)
+    let postEl = dataPostsJs.map(p => <MyPosts message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <div><h3>My posts Name of me</h3></div>

@@ -11,7 +11,14 @@ import {
     Link
 } from "react-router-dom";
 
-
+let dataDialogsApp = [
+    {id: '1', name: 'Leonid'},
+    {id: '2', name: 'Alexey dfg'},
+    {id: '3', name: 'Diana'},
+    {id: '4', name: 'Bob'},
+    {id: '5', name: 'Scruge'}
+];
+//debugger;
 const App = (props) => {
     return (
         <Router>
@@ -19,11 +26,12 @@ const App = (props) => {
                 <Header/>
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/Profile" component={ProfilePage}/>
+                    <Route path="/Profile" component={ProfilePage} />
                     <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/news" component={Dialogs}/>
                     <Route path="/music" component={Dialogs}/>
                     <Route path="/settings" component={Dialogs}/>
+                    <div>{props.a}</div>
                 </div>
             </div>
         </Router>
