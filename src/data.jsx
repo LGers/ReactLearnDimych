@@ -1,6 +1,6 @@
 let dataDialogsJs =
-    [{id: '1', name: '1Leonid1 from data.jsx'},
-        {id: '2', name: 'Alexey test'},
+    [{id: '1', name: 'Leonid1 from data.jsx'},
+        {id: '2', name: 'Alexey props'},
         {id: '3', name: 'Diana'},
         {id: '4', name: 'Bob'},
         {id: '5', name: 'Scruge'}
@@ -21,6 +21,6 @@ let dataPostsJs = [
     {message: 'I\'m a best react production4', likesCount: 6}
 ]
 
-export default dataDialogsJs;
+export {dataDialogsJs};
 export {dataMsgsJs};
 export {dataPostsJs};

@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {dataPostsJs} from './data';
+import {dataDialogsJs} from './data';
+import {dataMsgsJs} from './data';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App
+        dataPostsJs={dataPostsJs}
+        dataDialogsJs={dataDialogsJs}
+        dataMsgsJs={dataMsgsJs}
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );

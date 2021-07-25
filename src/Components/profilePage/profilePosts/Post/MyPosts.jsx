@@ -1,7 +1,7 @@
 import st from './MyPosts.module.css';
 
 const MyPosts = (props) => {
-    console.log(props.message);
+    //console.log(props.message);
     //debugger;
     return (
         <div className={st.myPostsItem}>
