@@ -3,27 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import dataDialogsJs from './data';
-//debugger;
-//--------------------My test start
-// let dataDialogsJs =[
-//     {id: '1', name: 'Leonid'},
-//     {id: '2', name: 'Alexey dfg'},
-//     {id: '3', name: 'Diana'},
-//     {id: '4', name: 'Bob'},
-//     {id: '5', name: 'Scruge'}
-// ];
 
-console.log('dataDialogsJs= '+dataDialogsJs);
-//debugger;
-
-let a=dataDialogsJs.map(el =>[el.id, el.name])
-// -/-------------------My test end
 
 ReactDOM.render(
   <React.StrictMode>
-    {/*<App />*/}
-    <App a={a}/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
