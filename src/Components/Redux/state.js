@@ -8,7 +8,8 @@ let state = {
             {id: '3', message: 'I\'m a best react production', name: 'alik3', age: 157, likesCount: 3},
             {id: '4', message: 'I\'m a best react production1', name: 'alik4', age: 158, likesCount: 7},
             {id: '5', message: 'I\'m a best react production4', name: 'alik5', age: 159, likesCount: 6}
-        ]
+        ],
+        newPostText: 'mvstudio.by'
     },
 
     dialogPage:{
@@ -29,22 +30,28 @@ let state = {
     sidebar:{}
 }
 
-export let addPost = (postMessage) => {
-    //debugger;
+window.state=state;
+export let addPost = () => {
     let newPost = {
         id: '0',
-        message: postMessage,
+        // message: postMessage,
+        message: state.profilePage.newPostText,
         name: 'alik id5 added',
         age: 1000,
         likesCount: 0
 
     };
-
     state.profilePage.dataPosts.push(newPost);
+    state.profilePage.newPostText ='';
     rerenderEntireTree(state);
     console.log(state);
 };
 
+export let updNewPostText = (postMessage) => {
+    let text=postMessage;
+    state.profilePage.newPostText=text;
+    rerenderEntireTree(state);;
+}
 export let updTextArea = (postMessage) => {
     let currentTextArea=postMessage;
     rerenderEntireTree(state);
@@ -52,4 +59,3 @@ export let updTextArea = (postMessage) => {
 }
 
 export default state;
-//export {};

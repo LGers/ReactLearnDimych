@@ -14,7 +14,7 @@ import {
 //import {state} from "./Components/Redux/state";
 
 const App = (props) => {
-    debugger;
+    //debugger;
     let dataPostsJs = props.state.dataPostsJs;
     let dataDialogsJs = props.state.dataDialogsJs;
     let dataMsgsJs = props.state.dataMsgsJs;
@@ -23,22 +23,30 @@ const App = (props) => {
     let dataDialogs = props.state.dialogPage.dataDialogs;
     let dataMsgs = props.state.dialogPage.dataMsgs;
 
-    let dataDialogsCombine=()=>{
+    let dataDialogsCombine = () => {
         return <Dialogs dataDialogs={dataDialogs} dataMsgs={dataMsgs}/>;
     }
-
+//debugger
     return (
         <Router>
             <div className='appWrapper'>
                 <Header/>
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/Profile" render={() => <ProfilePage dataPosts={dataPosts} addPost={props.addPost} updTextArea={props.updTextArea}/>}/>
-                    {/*<Route path="/dialogs" render={() => <Dialogs dataDialogsJs={dataDialogsJs} dataMsgsJs={dataDialogsJs}/>}/>*/}
-                    <Route path="/dialogs" render={dataDialogsCombine}/>
-                    <Route path="/news" render={() => <Dialogs/>}/>
-                    <Route path="/music" render={() => <Dialogs/>}/>
-                    <Route path="/settings" render={() => <Dialogs/>}/>
+                    <Route path="/Profile" render={() =>
+                        <ProfilePage
+                            profilePage={props.state.profilePage}
+                            addPost={props.addPost}
+                            updNewPostText={props.updNewPostText}
+
+                            //dataPosts={dataPosts}
+                            //newPostText={props.state.profilePage.newPostText}
+                        />
+                    }/>
+                    {/*<Route path="/dialogs" render={dataDialogsCombine}/>*/}
+                    <Route path="/dialogs" render={() =>
+                        <Dialogs dialogPage={props.state.dialogPage}/>}
+                    />
                 </div>
             </div>
         </Router>

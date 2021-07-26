@@ -12,34 +12,35 @@ const ProfileMyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = '';
-    }
-    let updateState = () => {
-        let text = newPostElement.current.value;
-        props.updTextArea(text);
-        //props.updTextArea.
-        //alert(text);
+        //let text = props.newPostText;
+        props.addPost();
+        //props.updNewPostText('');
     }
 
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        props.updNewPostText(text);
+
+
+    }
+//debugger;
     return <div>
-            <div><h3>My posts Name of me</h3></div>
-            <div className={st.addPost}>
-                <div>
-                    <textarea onChange={updateState} ref={newPostElement}></textarea>
-                </div>
-                <div>
-                    {/*<button onClick={addPost}>Add post</button>*/}
-                    {/*//<button>Add post</button>*/}
-                    <button onClick={addPost}>Add post</button>
-
-                </div>
+        <div><h3>My posts Name of me</h3></div>
+        <div className={st.addPost}>
+            <div>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
             </div>
-            <div className={st.Posts}>
-                {postEl}
+            <div>
+                {/*<button onClick={addPost}>Add post</button>*/}
+                {/*//<button>Add post</button>*/}
+                <button onClick={addPost}>Add post</button>
+
             </div>
         </div>
+        <div className={st.Posts}>
+            {postEl}
+        </div>
+    </div>
 
 };
 
