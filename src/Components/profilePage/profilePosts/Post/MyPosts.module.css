@@ -1,31 +1,39 @@
 .myPostsItem {
-    background: #ABABAB;
+    background-color:rgba(224,255,230,0.34);
+    //background: ;
     grid-area: mainContent;
     color: white;
     padding: 10px;
-    border: 1px solid lightslategrey;
+    border: 1px solid dimgrey;
+    margin: 5px;
 }
 
 .myPostsItem img {
+    background-color:dimgrey;
     width: 50px;
     height: 50 pz;
     border-radius: 15px;
     padding: 10px;
 }
+
 .postsBlock {
     padding: 10px;
 }
+
 .nameClass {
     color: #363535;
     font-weight: bold;
 }
-.msgSt{
+
+.msgSt {
     color: dimgray;
     font-weight: normal;
 }
+
 .msgPost {
+    background-color:lightsteelblue;
     color: black;
     font-weight: bold;
-    border:thin dashed;
+    border: thin dashed;
     padding: 10px;
 }
