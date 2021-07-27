@@ -8,7 +8,7 @@ export let rerenderEntireTree = (state) => {
     //debugger
     ReactDOM.render(
         <React.StrictMode>
-            <App state={store} addPost={store.addPost} updNewPostText={store.updNewPostText}/>
+            <App state={store.state} addPost={store.addPost} updNewPostText={store.updNewPostText}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
