@@ -1,6 +1,7 @@
 const ADD_POST = 'ADD_POST';
 const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
-const UPD_NEW_POST_TEXT_TEXT = 'text';
+const ADD_MSG = 'ADD_MSG';
+const UPD_NEW_MSG_TEXT = 'UPD_NEW_MSG_TEXT';
 
 //-Start store-----------------------------
 let store = {
@@ -29,6 +30,7 @@ let store = {
                 {id: '3', message: 'I best by React'},
                 {id: '4', message: 'and me'}
             ],
+            newMsgText: 'input Msg'
         },
         sidebar: {},
     },
@@ -43,7 +45,7 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    addPost() {
+    _____addPostss() {
         let newPost = {
             id: '0',
             message: this._state.profilePage.newPostText,
@@ -55,7 +57,7 @@ let store = {
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
-    updNewPostText(postMessage) {
+    ____updNewPostText(postMessage) {
         this._state.profilePage.newPostText = postMessage;
         this._callSubscriber(this._state);
     },
@@ -74,6 +76,17 @@ let store = {
         } else if (action.type === UPD_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
+        } else if (action.type === ADD_MSG){
+            let newMsg = {
+                id: '0',
+                message: this._state.dialogPage.newMsgText
+            };
+            this._state.dialogPage.dataMsgs.push(newMsg);
+            this._state.dialogPage.newMsgText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === UPD_NEW_MSG_TEXT){
+            this._state.dialogPage.newMsgText = action.newText;
+            this._callSubscriber(this._state);
         }
 
     }
@@ -83,6 +96,11 @@ let store = {
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const onPostChangeActionCreator = (text) => {
     return {type: UPD_NEW_POST_TEXT, newText: text}
+}
+
+export const addMsgActionCreator = () => ({type: ADD_MSG})
+export const onMsgChangeActionCreator = (text) => {
+    return {type: UPD_NEW_MSG_TEXT, newText: text}
 }
 window.store = store;
 

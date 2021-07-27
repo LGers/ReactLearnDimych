@@ -23,7 +23,7 @@ const ProfileMyPosts = (props) => {
     let onPostChange = () => {
         let text = newPostElement.current.value;
         // props.updNewPostText(text);
-        let action = {type: 'UPD_NEW_POST_TEXT', newText: text};
+        //let action = {type: UPD_NEW_POST_TEXT, newText: text};
         props.dispatch(onPostChangeActionCreator(text))
     }
     return <div>

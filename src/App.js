@@ -20,6 +20,7 @@ const App = (props) => {
     //         dataMsgs={props.state.dialogPage.dataMsgs}
     //     />;
     // }
+    //debugger
     return (
         <Router>
             <div className='appWrapper'>
@@ -33,7 +34,10 @@ const App = (props) => {
                         />
                     }/>
                     <Route path="/dialogs" render={() =>
-                        <Dialogs dialogPage={props.state.dialogPage}/>}
+                        <Dialogs
+                            dialogPage={props.state.dialogPage}
+                            dispatch={props.dispatch}
+                        />}
                     />
                 </div>
             </div>
