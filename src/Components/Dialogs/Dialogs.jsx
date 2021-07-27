@@ -3,30 +3,35 @@ import st from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {
-    addMsgActionCreator,
-    addPostActionCreator,
-    onMsgChangeActionCreator,
-    onPostChangeActionCreator
+    addMsgAC,
+    onMsgChangeAC,
 } from "../Redux/state";
 
 
 const Dialogs = (props) => {
+//debugger
+    let state=props.store.getState().dialogPage
 
-    let dialogsEl = props.dialogPage.dataDialogs.map(d => <DialogItem idItem={d.id} name={d.name}/>)
-    let messageEl = props.dialogPage.dataMsgs.map(m => <Message messageId={m.id} message={m.message}/>)
+    let dialogsEl = state.dataDialogs.map(d => <DialogItem idItem={d.id} name={d.name}/>)
+    let messageEl = state.dataMsgs.map(m => <Message messageId={m.id} message={m.message}/>)
+    let newMessageBody = state.newMsgBody;
 
     let newMsgElement = React.createRef();
+
     let addMsg = () => {
         //debugger
         let text = newMsgElement.current.value;
-        props.dispatch(addMsgActionCreator())
+        props.dispatch(addMsgAC())
     }
 
-    let onMsgChange = () => {
-        let text = newMsgElement.current.value;
-        props.dispatch(onMsgChangeActionCreator(text))
+    let onMsgChange = (e) => {
+        let body = e.target.value;
+        props.dispatch(onMsgChangeAC(body));
+        // let text = newMsgElement.current.value;
+        // props.dispatch(onMsgChangeAC(text))
     }
     //debugger
+
     return (
         <div className={st.dialogs}>
             <div className={st.dialogsItems}>
@@ -36,7 +41,8 @@ const Dialogs = (props) => {
                 {messageEl}
 
                 <div>
-                    <textarea onChange={onMsgChange} ref={newMsgElement} value={props.dialogPage.newMsgText}/>
+                    <textarea placeholder={'Enter your message'} onChange={onMsgChange} ref={newMsgElement}
+                              value={newMessageBody}/>
                 </div>
                 <div>
                     <button onClick={addMsg}>Add msg</button>

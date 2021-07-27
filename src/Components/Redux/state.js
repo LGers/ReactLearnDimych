@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD_POST';
 const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
 const ADD_MSG = 'ADD_MSG';
-const UPD_NEW_MSG_TEXT = 'UPD_NEW_MSG_TEXT';
+const UPD_NEW_MSG_BODY = 'UPD_NEW_MSG_BODY';
 
 //-Start store-----------------------------
 let store = {
@@ -30,7 +30,7 @@ let store = {
                 {id: '3', message: 'I best by React'},
                 {id: '4', message: 'and me'}
             ],
-            newMsgText: 'input Msg'
+            newMsgBody: ''
         },
         sidebar: {},
     },
@@ -79,13 +79,13 @@ let store = {
         } else if (action.type === ADD_MSG){
             let newMsg = {
                 id: '0',
-                message: this._state.dialogPage.newMsgText
+                message: this._state.dialogPage.newMsgBody
             };
             this._state.dialogPage.dataMsgs.push(newMsg);
-            this._state.dialogPage.newMsgText = '';
+            this._state.dialogPage.newMsgBody = '';
             this._callSubscriber(this._state);
-        } else if (action.type === UPD_NEW_MSG_TEXT){
-            this._state.dialogPage.newMsgText = action.newText;
+        } else if (action.type === UPD_NEW_MSG_BODY){
+            this._state.dialogPage.newMsgBody = action.newBody;
             this._callSubscriber(this._state);
         }
 
@@ -93,14 +93,14 @@ let store = {
 }
 //-----end store----------------------
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const onPostChangeActionCreator = (text) => {
+export const addPostAC = () => ({type: ADD_POST})
+export const onPostChangeAC = (text) => {
     return {type: UPD_NEW_POST_TEXT, newText: text}
 }
 
-export const addMsgActionCreator = () => ({type: ADD_MSG})
-export const onMsgChangeActionCreator = (text) => {
-    return {type: UPD_NEW_MSG_TEXT, newText: text}
+export const addMsgAC = () => ({type: ADD_MSG})
+export const onMsgChangeAC = (body) => {
+    return {type: UPD_NEW_MSG_BODY, newBody: body}
 }
 window.store = store;
 

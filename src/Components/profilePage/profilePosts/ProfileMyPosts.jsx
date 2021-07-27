@@ -1,7 +1,7 @@
 import React from 'react';
 import st from './ProfileMyPosts.module.css';
 import MyPosts from "./Post/MyPosts";
-import {addPostActionCreator, onPostChangeActionCreator} from "../../Redux/state";
+import {addPostAC, onPostChangeAC} from "../../Redux/state";
 
 // let addPostActionCreator = () => {
 //     return {type: 'ADD_POST'}
@@ -17,14 +17,14 @@ const ProfileMyPosts = (props) => {
 
     let addPost = () => {
         //props.addPost();
-        props.dispatch(addPostActionCreator())
+        props.dispatch(addPostAC())
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
         // props.updNewPostText(text);
         //let action = {type: UPD_NEW_POST_TEXT, newText: text};
-        props.dispatch(onPostChangeActionCreator(text))
+        props.dispatch(onPostChangeAC(text))
     }
     return <div>
         <div><h3>My posts Name of me</h3></div>
