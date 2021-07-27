@@ -10,14 +10,16 @@ const ProfileMyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.addPost();
+        //props.addPost();
+        props.dispatch({type: 'ADD_POST'})
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.updNewPostText(text);
+        // props.updNewPostText(text);
+        let action = {type: 'UPD_NEW_POST_TEXT', newText: text};
+        props.dispatch(action)
     }
-
     return <div>
         <div><h3>My posts Name of me</h3></div>
         <div className={st.addPost}>

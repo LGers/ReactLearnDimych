@@ -10,6 +10,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import store from "./Components/Redux/state";
 
 const App = (props) => {
     // let dataDialogsCombine = () => {
@@ -28,8 +29,7 @@ const App = (props) => {
                     <Route path="/Profile" render={() =>
                         <ProfilePage
                             profilePage={props.state.profilePage}
-                            addPost={props.addPost}
-                            updNewPostText={props.updNewPostText}
+                            dispatch={props.dispatch}
                         />
                     }/>
                     <Route path="/dialogs" render={() =>

@@ -7,9 +7,8 @@ const ProfilePage = (props) => {
             <ProfileInfo/>
             <ProfileMyPosts
                 dataPostsJs={props.profilePage.dataPosts}
-                addPost={props.addPost}
                 newPostText={props.profilePage.newPostText}
-                updNewPostText={props.updNewPostText}
+                dispatch={props.dispatch}
             />
         </div>
     )

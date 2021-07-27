@@ -28,13 +28,15 @@ let store = {
         },
         sidebar: {},
     },
+    _callSubscriber: function () {
+        console.log('STate changed')
+    },
 
     getState() {
         return this._state;
     },
-
-    _callSubscriber: function () {
-        console.log('STate changed')
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
 
     addPost() {
@@ -49,19 +51,30 @@ let store = {
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
-
     updNewPostText(postMessage) {
-        let text = postMessage;
-        this._state.profilePage.newPostText=text;
+        this._state.profilePage.newPostText = postMessage;
         this._callSubscriber(this._state);
     },
+    dispatch(action) { //{type: 'ADD_POST'}
+        if (action.type === 'ADD_POST') {
+            let newPost = {
+                id: '0',
+                message: this._state.profilePage.newPostText,
+                name: 'alik id5 added',
+                age: 1000,
+                likesCount: 0
+            };
+            this._state.profilePage.dataPosts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPD_NEW_POST_TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
 
-    subscribe(observer) {
-        this._callSubscriber = observer;
     }
-
-
-}//-----end store----------------------
+}
+//-----end store----------------------
 window.store = store;
 
 export default store;
