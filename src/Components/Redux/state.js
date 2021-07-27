@@ -1,3 +1,7 @@
+import profileReduser from "./profile-reducer";
+import dialogsReduser from "./dialogs-reducer";
+import sidebarReduser from "./sidebar-reducer";
+
 const ADD_POST = 'ADD_POST';
 const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
 const ADD_MSG = 'ADD_MSG';
@@ -62,7 +66,13 @@ let store = {
         this._callSubscriber(this._state);
     },
     dispatch(action) { //{type: 'ADD_POST'}
-        if (action.type === ADD_POST) {
+        this._state.profilePage = profileReduser(this._state.profilePage, action)
+        this._state.dialogPage = dialogsReduser(this._state.dialogPage, action)
+        this._state.sidebar = sidebarReduser(this._state.sidebar, action)
+
+        this._callSubscriber(this._state);
+        /*if (action.type === ADD_POST) {
+            // /*
             let newPost = {
                 id: '0',
                 message: this._state.profilePage.newPostText,
@@ -87,7 +97,7 @@ let store = {
         } else if (action.type === UPD_NEW_MSG_BODY){
             this._state.dialogPage.newMsgBody = action.newBody;
             this._callSubscriber(this._state);
-        }
+        }*/
 
     }
 }
