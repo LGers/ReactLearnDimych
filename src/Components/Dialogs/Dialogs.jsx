@@ -19,18 +19,15 @@ const Dialogs = (props) => {
     let newMsgElement = React.createRef();
 
     let addMsg = () => {
-        //debugger
-        let text = newMsgElement.current.value;
+
         props.dispatch(addMsgAC())
     }
 
     let onMsgChange = (e) => {
         let body = e.target.value;
         props.dispatch(onMsgChangeAC(body));
-        // let text = newMsgElement.current.value;
-        // props.dispatch(onMsgChangeAC(text))
+
     }
-    //debugger
 
     return (
         <div className={st.dialogs}>
@@ -39,7 +36,6 @@ const Dialogs = (props) => {
             </div>
             <div className={st.messages}>
                 {messageEl}
-
                 <div>
                     <textarea placeholder={'Enter your message'} onChange={onMsgChange} ref={newMsgElement}
                               value={newMessageBody}/>
@@ -47,7 +43,6 @@ const Dialogs = (props) => {
                 <div>
                     <button onClick={addMsg}>Add msg</button>
                 </div>
-
             </div>
         </div>
     )

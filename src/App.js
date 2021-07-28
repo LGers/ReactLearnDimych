@@ -14,14 +14,7 @@ import store from "./Redux/store";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
-    // let dataDialogsCombine = () => {
-    //     return <Dialogs
-    //         // dataDialogs={props.state.dialogPage.dataDialogs}
-    //         dataDialogs={props.state.getState()}
-    //         dataMsgs={props.state.dialogPage.dataMsgs}
-    //     />;
-    // }
-    //debugger
+
     return (
         <Router>
             <div className='appWrapper'>

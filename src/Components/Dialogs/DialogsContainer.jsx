@@ -19,19 +19,14 @@ const Dialogs = (props) => {
     let newMsgElement = React.createRef();
 
     let addMsg = () => {
-        //debugger
-        //let text = newMsgElement.current.value;
         props.store.dispatch(addMessageAC())
     }
 
     let onMsgChange = (e) => {
-        //debugger
         let body = e.target.value;
         props.store.dispatch(updNewMessageBodyAC(body));
-        // let text = newMsgElement.current.value;
-        // props.dispatch(onMsgChangeAC(text))
+
     }
-    //debugger
 
     return (
         <div className={st.dialogs}>
@@ -40,7 +35,6 @@ const Dialogs = (props) => {
             </div>
             <div className={st.messages}>
                 {messageEl}
-
                 <div>
                     <textarea placeholder={'Enter your message'} onChange={onMsgChange} ref={newMsgElement}
                               value={newMessageBody}/>

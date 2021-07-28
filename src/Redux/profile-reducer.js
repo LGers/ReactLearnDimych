@@ -13,7 +13,7 @@ let initialState = {
 };
 
 const profileReduser = (state=initialState, action) => {
-    //debugger
+
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -25,17 +25,13 @@ const profileReduser = (state=initialState, action) => {
             };
             state.dataPosts.push(newPost);
             state.newPostText = '';
-            // state._callSubscriber(state._state);
             return state;
         case UPD_NEW_POST_TEXT:
             state.newPostText = action.newText;
-            // state._callSubscriber(state._state);
             return state;
         default:
             return state;
     }
-
-    //return state;
 }
 
 export const addPostAC = () => ({type: ADD_POST})
