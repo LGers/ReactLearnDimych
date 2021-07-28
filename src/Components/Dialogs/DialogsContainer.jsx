@@ -2,14 +2,14 @@ import React from "react";
 import st from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {
-    addMsgAC,
-    onMsgChangeAC,
-} from "../../Redux/store";
-
-
+import {addMessageAC, updNewMessageBodyAC} from "../../Redux/dialogs-reducer";
+/* import {
+     addMsgAC,
+     onMsgChangeAC,
+ } from "../../Redux/store";
+*/
 const Dialogs = (props) => {
-
+//debugger
     let state=props.store.getState().dialogPage
 
     let dialogsEl = state.dataDialogs.map(d => <DialogItem idItem={d.id} name={d.name}/>)
@@ -20,13 +20,14 @@ const Dialogs = (props) => {
 
     let addMsg = () => {
         //debugger
-        let text = newMsgElement.current.value;
-        props.dispatch(addMsgAC())
+        //let text = newMsgElement.current.value;
+        props.store.dispatch(addMessageAC())
     }
 
     let onMsgChange = (e) => {
+        //debugger
         let body = e.target.value;
-        props.dispatch(onMsgChangeAC(body));
+        props.store.dispatch(updNewMessageBodyAC(body));
         // let text = newMsgElement.current.value;
         // props.dispatch(onMsgChangeAC(text))
     }

@@ -19,8 +19,9 @@ let initialState ={
 }
 
 const dialogsReduser = (state=initialState, action) => {
-
+//debugger
     switch (action.type) {
+
         case ADD_MSG:
             let body = state.newMsgBody;
             state.newMsgBody = '';
@@ -36,7 +37,8 @@ const dialogsReduser = (state=initialState, action) => {
             //state._callSubscriber(state._state);
             return state;
         case UPD_NEW_MSG_BODY:
-            state.newMsgBody = action.newBody;
+        // case UPD_NEW_MSG_BODY:
+            state.newMsgBody = action.newMsgBody;
             //state._callSubscriber(state._state);
             return state;
         default:
@@ -45,4 +47,8 @@ const dialogsReduser = (state=initialState, action) => {
 
 
 }
+export const addMessageAC = () => ({type: ADD_MSG})
+export const updNewMessageBodyAC = (body) =>
+    ({type: UPD_NEW_MSG_BODY, newMsgBody: body })
+
 export default dialogsReduser;

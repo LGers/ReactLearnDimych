@@ -13,6 +13,7 @@ let initialState = {
 };
 
 const profileReduser = (state=initialState, action) => {
+    //debugger
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -36,4 +37,8 @@ const profileReduser = (state=initialState, action) => {
 
     //return state;
 }
+
+export const addPostAC = () => ({type: ADD_POST})
+export const updNewPostTextAC = (text) =>
+    ({type: UPD_NEW_POST_TEXT, newText: text })
 export default profileReduser;

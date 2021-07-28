@@ -11,6 +11,7 @@ import {
     Link
 } from "react-router-dom";
 import store from "./Redux/store";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
     // let dataDialogsCombine = () => {
@@ -29,17 +30,12 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
                     <Route path="/Profile" render={() =>
                         <ProfilePage
-                            //store={props.store}
-                            //dataPosts={props.state.profilePage.dataPosts}
-                            profilePage={props.state.profilePage}
-                            dispatch={props.dispatch}
+                            store={props.store}
                         />
                     }/>
                     <Route path="/dialogs" render={() =>
-                        <Dialogs
+                        <DialogsContainer
                             store={props.store}
-                            //dialogPage={props.state.dialogPage}
-                            dispatch={props.dispatch}
                         />}
                     />
                 </div>

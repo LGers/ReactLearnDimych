@@ -1,6 +1,6 @@
 import React from 'react';
-import st from './ProfileMyPosts.module.css';
-import MyPosts from "./Post/MyPosts";
+import st from './MyPosts.module.css';
+import Post from "./Post/Post";
 import {addPostAC, onPostChangeAC} from "../../../Redux/store";
 
 // let addPostActionCreator = () => {
@@ -9,23 +9,26 @@ import {addPostAC, onPostChangeAC} from "../../../Redux/store";
 // let onPostChangeActionCreator = (text) => {
 //     return {type: 'UPD_NEW_POST_TEXT', newText: text}
 // }
-const ProfileMyPosts = (props) => {
+const MyPosts = (props) => {
+    //debugger
     let postEl =
-        props.dataPostsJs.map(p => <MyPosts message={p.message} name={p.name} age={p.age} likesCount={p.likesCount}/>)
+        props.dataPostsJs.map(p => <Post message={p.message} name={p.name} age={p.age} likesCount={p.likesCount}/>)
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        //props.addPost();
-        props.dispatch(addPostAC())
+    let onAddPost = () => {
+        props.addPost();
+        //props.dispatch(addPostAC())
     }
 
     let onPostChange = () => {
+        //debugger
         let text = newPostElement.current.value;
-        // props.updNewPostText(text);
+        props.updNewPostText(text);
         //let action = {type: UPD_NEW_POST_TEXT, newText: text};
-        props.dispatch(onPostChangeAC(text))
+        //props.dispatch(onPostChangeAC(text))
     }
+
     return <div>
         <div><h3>My posts Name of me</h3></div>
         <div className={st.addPost}>
@@ -33,7 +36,7 @@ const ProfileMyPosts = (props) => {
                 <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
         </div>
         <div className={st.Posts}>
@@ -43,4 +46,4 @@ const ProfileMyPosts = (props) => {
 
 };
 
-export default ProfileMyPosts;
+export default MyPosts;

@@ -1,6 +1,6 @@
-import st from './MyPosts.module.css';
+import st from './Post.module.css';
 
-const MyPosts = (props) => {
+const Post = (props) => {
     return (
         <div className={st.myPostsItem}>
             <div>
@@ -20,4 +20,4 @@ const MyPosts = (props) => {
     )
 };
 
-export default MyPosts;
+export default Post;
