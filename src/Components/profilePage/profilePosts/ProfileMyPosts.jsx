@@ -1,7 +1,7 @@
 import React from 'react';
 import st from './ProfileMyPosts.module.css';
 import MyPosts from "./Post/MyPosts";
-import {addPostAC, onPostChangeAC} from "../../Redux/state";
+import {addPostAC, onPostChangeAC} from "../../../Redux/store";
 
 // let addPostActionCreator = () => {
 //     return {type: 'ADD_POST'}

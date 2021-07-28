@@ -49,55 +49,13 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    _____addPostss() {
-        let newPost = {
-            id: '0',
-            message: this._state.profilePage.newPostText,
-            name: 'alik id5 added',
-            age: 1000,
-            likesCount: 0
-        };
-        this._state.profilePage.dataPosts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    ____updNewPostText(postMessage) {
-        this._state.profilePage.newPostText = postMessage;
-        this._callSubscriber(this._state);
-    },
     dispatch(action) { //{type: 'ADD_POST'}
         this._state.profilePage = profileReduser(this._state.profilePage, action)
         this._state.dialogPage = dialogsReduser(this._state.dialogPage, action)
         this._state.sidebar = sidebarReduser(this._state.sidebar, action)
 
         this._callSubscriber(this._state);
-        /*if (action.type === ADD_POST) {
-            // /*
-            let newPost = {
-                id: '0',
-                message: this._state.profilePage.newPostText,
-                name: 'alik id5 added',
-                age: 1000,
-                likesCount: 0
-            };
-            this._state.profilePage.dataPosts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPD_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_MSG){
-            let newMsg = {
-                id: '0',
-                message: this._state.dialogPage.newMsgBody
-            };
-            this._state.dialogPage.dataMsgs.push(newMsg);
-            this._state.dialogPage.newMsgBody = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPD_NEW_MSG_BODY){
-            this._state.dialogPage.newMsgBody = action.newBody;
-            this._callSubscriber(this._state);
-        }*/
+
 
     }
 }

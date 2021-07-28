@@ -10,7 +10,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import store from "./Components/Redux/state";
+import store from "./Redux/store";
 
 const App = (props) => {
     // let dataDialogsCombine = () => {

@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 import {
     addMsgAC,
     onMsgChangeAC,
-} from "../Redux/state";
+} from "../../Redux/store";
 
 
 const Dialogs = (props) => {
