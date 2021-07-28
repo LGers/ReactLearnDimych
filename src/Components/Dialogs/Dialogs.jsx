@@ -10,7 +10,8 @@ import {addMessageAC, updNewMessageBodyAC} from "../../Redux/dialogs-reducer";
 const Dialogs = (props) => {
 
     //let state=props.store.getState().dialogPage
-
+    let state=props.dialogPage
+debugger
     let dialogsEl = props.dataDialogs.map(d => <DialogItem idItem={d.id} name={d.name}/>)
     let messageEl = props.dataMsgs.map(m => <Message messageId={m.id} message={m.message}/>)
     let newMessageBody = props.newMsgBody;
@@ -29,7 +30,7 @@ const Dialogs = (props) => {
 
     let onAddMsg = () => {
         props.addMsg();
-        //props.store.dispatch(addMessageAC())
+        // props.store.dispatch(addMessageAC())
         // store.dispatch(addPostAC())
     }
 

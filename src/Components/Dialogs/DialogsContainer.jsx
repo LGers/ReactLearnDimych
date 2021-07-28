@@ -6,7 +6,7 @@ import Dialogs from "./Dialogs";
 import {addPostAC, updNewPostTextAC} from "../../Redux/profile-reducer";
 
 const DialogsContainer = (props) => {
-    let state = props.store.getState().dialogPage
+
 
     /*let dialogsEl = state.dataDialogs.map(d => <DialogItem idItem={d.id} name={d.name}/>)
     let messageEl = state.dataMsgs.map(m => <Message messageId={m.id} message={m.message}/>)
@@ -26,7 +26,8 @@ const DialogsContainer = (props) => {
 
     //let state = props.store.getState();
 
-    let addMsg = () => {
+    let state = props.store.getState().dialogPage
+    let addMsgClick = () => {
         props.store.dispatch(addMessageAC())
     }
 
@@ -37,12 +38,13 @@ const DialogsContainer = (props) => {
 
     return (
         <Dialogs
-            addMsg={addMsg}
+            addMsg={addMsgClick}
             onMsgChange={onMsgChange}
 
             dataDialogs={state.dataDialogs}
             dataMsgs={state.dataMsgs}
             newMsgBody={state.newMsgBody}
+            dialogPage={state}
         />)
     /*(<div className={st.dialogs}>
         <div className={st.dialogsItems}>
