@@ -2,9 +2,7 @@ import React from 'react';
 import MyPosts from "./MyPosts";
 import {addPostAC, updNewPostTextAC} from "../../../Redux/profile-reducer";
 
-
 const MyPostsContainer = (props) => {
-
     let state = props.store.getState();
 
     let addPost = () => {
