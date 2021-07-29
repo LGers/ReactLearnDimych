@@ -19,8 +19,7 @@ let initialState = {
 }
 
 const dialogsReduser = (state = initialState, action) => {
-//debugger
-    //let stateCopy={...state};
+
     switch (action.type) {
 
         case ADD_MSG: {
@@ -30,18 +29,12 @@ const dialogsReduser = (state = initialState, action) => {
                 dataMsgs: [...state.dataMsgs, newPost],
                 newMsgBody: ''
             };
-            //stateCopy.dataMsgs.push({id: 6, message: state.newMsgBody});
-
-
-            //return stateCopy;
         }
         case UPD_NEW_MSG_BODY: {
             return {
                 ...state,
                 newMsgBody: action.newMsgBody
             };
-            //stateCopy.newMsgBody = action.newMsgBody;
-            //return stateCopy;
         }
         default:
             return state;

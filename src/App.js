@@ -12,8 +12,8 @@ import {
 
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
-const App = (props) => {
-//debugger
+const App = () => {
+
     return (
         <Router>
             <div className='appWrapper'>

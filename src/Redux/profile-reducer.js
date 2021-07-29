@@ -13,8 +13,7 @@ let initialState = {
 };
 
 const profileReduser = (state = initialState, action) => {
-//debugger
-    //let stateCopy = {...state}
+
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -29,20 +28,9 @@ const profileReduser = (state = initialState, action) => {
                 dataPosts: [...state.dataPosts, newPost],
                 newPostText: ''
             }
-            /*stateCopy.dataPosts = [...state.dataPosts];
-            stateCopy.dataPosts.push(newPost);
-            stateCopy.newPostText = '';*/
-
-            // stateCopy.dataPosts.push(newPost);
-            // state.newPostText = '';
-            //return stateCopy;
         }
         case UPD_NEW_POST_TEXT: {
-            //let stateCopy = {...state}
-            //stateCopy.newPostText=[...state.newPostText]
             return {...state, newPostText: action.newText};
-            // state.newPostText = action.newText;
-            //return stateCopy;
         }
         default:
             return state;
