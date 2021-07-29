@@ -21,10 +21,10 @@ const App = (props) => {
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     <Route path="/Profile" render={() =>
-                        <ProfilePage store={props.store}/>
+                        <ProfilePage />
                     }/>
                     <Route path="/dialogs" render={() =>
-                        <DialogsContainer store={props.store}/>}
+                        <DialogsContainer />}
                     />
                 </div>
             </div>
