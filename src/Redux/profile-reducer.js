@@ -12,10 +12,11 @@ let initialState = {
     newPostText: 'mvstudio.by'
 };
 
-const profileReduser = (state=initialState, action) => {
-
+const profileReduser = (state = initialState, action) => {
+//debugger
+    //let stateCopy = {...state}
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost = {
                 id: '0',
                 message: state.newPostText,
@@ -23,12 +24,26 @@ const profileReduser = (state=initialState, action) => {
                 age: 1000,
                 likesCount: 0
             };
-            state.dataPosts.push(newPost);
-            state.newPostText = '';
-            return state;
-        case UPD_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            return {
+                ...state,
+                dataPosts: [...state.dataPosts, newPost],
+                newPostText: ''
+            }
+            /*stateCopy.dataPosts = [...state.dataPosts];
+            stateCopy.dataPosts.push(newPost);
+            stateCopy.newPostText = '';*/
+
+            // stateCopy.dataPosts.push(newPost);
+            // state.newPostText = '';
+            //return stateCopy;
+        }
+        case UPD_NEW_POST_TEXT: {
+            //let stateCopy = {...state}
+            //stateCopy.newPostText=[...state.newPostText]
+            return {...state, newPostText: action.newText};
+            // state.newPostText = action.newText;
+            //return stateCopy;
+        }
         default:
             return state;
     }
@@ -36,5 +51,5 @@ const profileReduser = (state=initialState, action) => {
 
 export const addPostAC = () => ({type: ADD_POST})
 export const updNewPostTextAC = (text) =>
-    ({type: UPD_NEW_POST_TEXT, newText: text })
+    ({type: UPD_NEW_POST_TEXT, newText: text})
 export default profileReduser;

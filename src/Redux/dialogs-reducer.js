@@ -1,7 +1,7 @@
 const ADD_MSG = 'ADD_MSG';
 const UPD_NEW_MSG_BODY = 'UPD_NEW_MSG_BODY';
 
-let initialState ={
+let initialState = {
     dataDialogs: [
         {id: '1', name: 'Leonid1 from data.jsx'},
         {id: '2', name: 'Alexey props'},
@@ -18,25 +18,37 @@ let initialState ={
     newMsgBody: ''
 }
 
-const dialogsReduser = (state=initialState, action) => {
-
+const dialogsReduser = (state = initialState, action) => {
+//debugger
+    //let stateCopy={...state};
     switch (action.type) {
 
-        case ADD_MSG:
-            let body = state.newMsgBody;
-            state.newMsgBody = '';
-            state.dataMsgs.push({id: 6, message: body});
+        case ADD_MSG: {
+            let newPost = {id: 6, message: state.newMsgBody}
+            return {
+                ...state,
+                dataMsgs: [...state.dataMsgs, newPost],
+                newMsgBody: ''
+            };
+            //stateCopy.dataMsgs.push({id: 6, message: state.newMsgBody});
 
-            return state;
-        case UPD_NEW_MSG_BODY:
-            state.newMsgBody = action.newMsgBody;
-            return state;
+
+            //return stateCopy;
+        }
+        case UPD_NEW_MSG_BODY: {
+            return {
+                ...state,
+                newMsgBody: action.newMsgBody
+            };
+            //stateCopy.newMsgBody = action.newMsgBody;
+            //return stateCopy;
+        }
         default:
             return state;
     }
 }
-export const addMessageAC = () => ({type: ADD_MSG})
+export const addMessageAC = (body) => ({type: ADD_MSG})
 export const updNewMessageBodyAC = (body) =>
-    ({type: UPD_NEW_MSG_BODY, newMsgBody: body })
+    ({type: UPD_NEW_MSG_BODY, newMsgBody: body})
 
 export default dialogsReduser;

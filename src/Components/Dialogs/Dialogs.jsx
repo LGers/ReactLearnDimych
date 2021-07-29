@@ -6,15 +6,18 @@ import Message from "./Message/Message";
 const Dialogs = (props) => {
     let state=props.dialogPage
 
-    let dialogsEl = props.dataDialogs.map(d => <DialogItem idItem={d.id} name={d.name}/>)
-    let messageEl = props.dataMsgs.map(m => <Message messageId={m.id} message={m.message}/>)
+    let dialogsEl = props.dataDialogs.map(d => <DialogItem idItem={d.id} key={d.id} name={d.name}/>)
+    let messageEl = props.dataMsgs.map(m => <Message messageId={m.id} key={m.id} message={m.message}/>)
     let newMessageBody = props.newMsgBody;
     let newMsgElement = React.createRef();
     let onAddMsg = () => {
+        //debugger
+        //let body = props.newMsgBody// newMsgElement.current.value;
         props.addMsg();
     }
 
     let onMsgChange = () => {
+        //debugger
         let body = newMsgElement.current.value;
         props.onMsgChange(body);
     }

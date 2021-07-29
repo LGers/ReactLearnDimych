@@ -13,7 +13,7 @@ import {
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
-
+//debugger
     return (
         <Router>
             <div className='appWrapper'>
