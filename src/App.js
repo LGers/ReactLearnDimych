@@ -11,9 +11,9 @@ import {
 } from "react-router-dom";
 
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 const App = () => {
-
     return (
         <Router>
             <div className='appWrapper'>
@@ -21,10 +21,12 @@ const App = () => {
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     <Route path="/Profile" render={() =>
-                        <ProfilePage />
+                        <ProfilePage/>
                     }/>
                     <Route path="/dialogs" render={() =>
-                        <DialogsContainer />}
+                        <DialogsContainer/>}
+                    />
+                    <Route path="/users" render={() => <UsersContainer />}
                     />
                 </div>
             </div>

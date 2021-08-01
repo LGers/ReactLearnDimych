@@ -1,0 +1,66 @@
+.users {
+    border-style: solid;
+    border-color: white;
+    border-width: thin;
+}
+
+.user {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    border-style: solid;
+    border-color: white;
+    border-width: thin;
+    margin: 10px;
+    background-color: rgba(235 236 243);
+}
+.avaPhoto{
+    width: 80px;
+}
+.userAva {
+    /*display: grid;*/
+    /*grid-template-columns: 2fr 10fr;*/
+    border-style: solid;
+    border-color: white;
+    border-width: thin;
+    margin: 10px;
+    left: 50%;
+}
+
+.userAva div {
+    left: 50%;
+}
+
+.userDataCont {
+    border-style: solid;
+    border-color: white;
+    border-width: thin;
+    margin: 10px;
+}
+
+.userData {
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    /*border-style: solid;*/
+    /*border-color: red;*/
+    margin: 10px;
+}
+
+.userLocation {
+    /*float: right;*/
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center div {
+    background: black;
+    color: white;
+}
+
+.center button {
+    background: #654848;
+    color: floralwhite;
+}
