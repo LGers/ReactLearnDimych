@@ -64,3 +64,12 @@
     background: #654848;
     color: floralwhite;
 }
+.pagesPaginator{
+    margin: 5px;
+    border: thin;
+    border-color: white;
+}
+.selectedPage {
+    font-weight: bold;
+
+}
