@@ -2,119 +2,107 @@ import React from "react";
 import UserItem from "./UserItem/UserItem";
 import st from './Users.module.css';
 import {setUsersAC} from "../../Redux/users-reducer";
+import * as axios from "axios";
+import userPhotoDefault from '../../assets/img/default-user-icon-15.jpg'
 
 
 let Users = (props) => {
-    // axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    // if (props.users.length===0){
     //     props.setUsers(
     //         [
     //             {
     //                 id: '1',
     //                 followed: false,
-    //                 fullName: 'Leonid M',
+    //                 name: 'Leonid M',
     //                 status: 'I\'m a boss',
     //                 location: {country: 'Belarus', city: 'Boro-Boro'},
-    //                 photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+    //                 photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+    //                 photos:{
+    //                     small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+    //                     large:''}
     //             },
     //             {
     //                 id: '2',
     //                 followed: true,
-    //                 fullName: 'anna',
+    //                 name: 'anna',
     //                 status: 'I\'m a boss',
     //                 location: {country: 'Russia', city: 'Moskow'},
-    //                 photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+    //                 photoUrl:'https://storage.ws.pho.to/s2/c89a75636028c8c12c32673b92c474162f5bba13_m.jpg',
+    //                 photos:{
+    //                     small:'https://storage.ws.pho.to/s2/c89a75636028c8c12c32673b92c474162f5bba13_m.jpg',
+    //                     large:''}
     //             },
     //             {
     //                 id: '3',
     //                 followed: false,
-    //                 fullName: 'John',
+    //                 name: 'John',
     //                 status: 'I\'m a boss',
     //                 location: {country: 'Giorgia', city: 'Pellopones'},
-    //                 photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+    //                 photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+    //                 photos:{
+    //                     small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+    //                     large:''}
     //             },
     //             {
     //                 id: '4',
     //                 followed: false,
-    //                 fullName: 'Olga',
+    //                 name: 'Olga',
     //                 status: 'I\'m a boss',
     //                 location: {country: 'Belarus', city: 'Boro'},
-    //                 photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+    //                 photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+    //                 photos:{
+    //                     small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+    //                     large:''}
     //             },
     //             {
     //                 id: '5',
     //                 followed: true,
-    //                 fullName: 'Igor',
+    //                 name: 'Igor',
     //                 status: 'I m a boss',
     //                 location: {country: 'Ukraine', city: 'Kiev'},
-    //                 photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+    //                 photoUrl:'https://imgv3.fotor.com/images/homepage-feature-card/Fotor-AI-photo-enhancement-tool-ru.jpg',
+    //                 photos:{
+    //                     small:'https://imgv3.fotor.com/images/homepage-feature-card/Fotor-AI-photo-enhancement-tool-ru.jpg',
+    //                     large:''}
     //             }
     //         ]
     //     )
-    // });
-
-    if (props.users.length === 0) {
-        debugger
-        props.setUsers([
-            {
-                id: '1',
-                followed: false,
-                fullName: 'Leonid M',
-                status: 'I\'m a boss',
-                location: {country: 'Belarus', city: 'Boro-Boro'},
-                photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
-            },
-            {
-                id: '2',
-                followed: true,
-                fullName: 'anna',
-                status: 'I\'m a boss',
-                location: {country: 'Russia', city: 'Moskow'},
-                photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
-            },
-            {
-                id: '3',
-                followed: false,
-                fullName: 'John',
-                status: 'I\'m a boss',
-                location: {country: 'Giorgia', city: 'Pellopones'},
-                photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
-            },
-            {
-                id: '4',
-                followed: false,
-                fullName: 'Olga',
-                status: 'I\'m a boss',
-                location: {country: 'Belarus', city: 'Boro'},
-                photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
-            },
-            {
-                id: '5',
-                followed: true,
-                fullName: 'Igor',
-                status: 'I m a boss',
-                location: {country: 'Ukraine', city: 'Kiev'},
-                photoUrl: 'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
-            }
-        ])
+    // }
+    let getUsers = () => {
+        if (props.users.length===0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            });
+        }
     }
-
+    // if (props.users.length===0) {
+    //     axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    //         props.setUsers(response.data.items)
+    //     });
+    // }
 
     let usersEl = props.users.map(u => <UserItem
         idItem={u.id}
-        name={u.fullName}
+        name={u.name}
         key={u.id}
         status={u.status}
-        location={u.location}
-        photoUrl={u.photoUrl}
+        //location={u.location}
+        //photoUrl={u.photoUrl}
+        photos={u.photos}
         followed={u.followed}
     />)
+
     return (
         <div>
+            <button onClick={getUsers}>GetUsers</button>
             {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img className={st.avaPhoto} src={u.photoUrl}/>
+                            <img className={st.avaPhoto} src={
+                                u.photos.small != null
+                                    ? u.photos.small
+                                    : userPhotoDefault}/>
                         </div>
                         <div>
                             {u.followed
@@ -130,12 +118,14 @@ let Users = (props) => {
                     </span>
                     <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            {/*<div>{u.location.country}</div>*/}
+                            <div>{'Country'}</div>
+                            {/*<div>{u.location.city}</div>*/}
+                            <div>{'City'}</div>
                         </span>
                     </span>
                 </div>)

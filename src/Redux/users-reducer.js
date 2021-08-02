@@ -10,7 +10,10 @@ let initialState = {
             //     fullName: 'Leonid M',
             //     status: 'I\'m a boss',
             //     location: {country: 'Belarus', city: 'Boro-Boro'},
-            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //     photos:{
+            //         small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //         large:''}
             // },
             // {
             //     id: '2',
@@ -18,7 +21,10 @@ let initialState = {
             //     fullName: 'anna',
             //     status: 'I\'m a boss',
             //     location: {country: 'Russia', city: 'Moskow'},
-            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //     photos:{
+            //         small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //         large:''}
             // },
             // {
             //     id: '3',
@@ -26,7 +32,10 @@ let initialState = {
             //     fullName: 'John',
             //     status: 'I\'m a boss',
             //     location: {country: 'Giorgia', city: 'Pellopones'},
-            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //     photos:{
+            //         small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //         large:''}
             // },
             // {
             //     id: '4',
@@ -34,7 +43,10 @@ let initialState = {
             //     fullName: 'Olga',
             //     status: 'I\'m a boss',
             //     location: {country: 'Belarus', city: 'Boro'},
-            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //     photos:{
+            //         small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //         large:''}
             // },
             // {
             //     id: '5',
@@ -42,7 +54,10 @@ let initialState = {
             //     fullName: 'Igor',
             //     status: 'I m a boss',
             //     location: {country: 'Ukraine', city: 'Kiev'},
-            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg'
+            //     photoUrl:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //     photos:{
+            //         small:'https://icon-library.com/images/default-user-icon/default-user-icon-15.jpg',
+            //         large:''}
             // }
         ]
     }
@@ -50,7 +65,7 @@ let initialState = {
 ;
 
 const usersReducer = (state = initialState, action) => {
-
+// debugger
     switch (action.type) {
         case FOLLOW: {
             //------------------------------------------------
