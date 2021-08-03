@@ -1,7 +1,12 @@
 import st from './ProfileInfo.module.css';
+import Preloader from "../../common/preloader/Preloader";
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
+    //debugger
     return (
         <div>
             <div className={st.mainImgBlock}>
@@ -9,7 +14,13 @@ const ProfileInfo = () => {
                 <img src='https://www.visitboi.co.nz/wp-content/uploads/2016/10/90-Mile-Beach-1200-400.jpg'></img>
             </div>
             <div className={st.decriptionBlock}>
-                ava+descript
+                <img src={props.profile.photos.large}/>
+                <div>{props.fullName}</div>
+                <div>Обо мне: [{props.profile.aboutMe}]</div>
+                <div>Контакты facebook: [{props.profile.contacts.facebook}]</div>
+                <div>Контакты web: [{props.profile.contacts.website}]</div>
+
+                
             </div>
         </div>
     )

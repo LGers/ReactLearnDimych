@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD_POST';
 const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_CURRENT_PROFILE_PAGE = 'SET_CURRENT_PROFILE_PAGE';
 
 let initialState = {
     dataPosts: [
@@ -9,7 +11,9 @@ let initialState = {
         {id: '4', message: 'I\'m a best react production1', name: 'alik4', age: 158, likesCount: 7},
         {id: '5', message: 'I\'m a best react production4', name: 'alik5', age: 159, likesCount: 6}
     ],
-    newPostText: 'mvstudio.by'
+    newPostText: 'mvstudio.by',
+    profile: null,
+    currentProfilePage:1
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -32,12 +36,21 @@ const profileReduser = (state = initialState, action) => {
         case UPD_NEW_POST_TEXT: {
             return {...state, newPostText: action.newText};
         }
+        case SET_USER_PROFILE: {
+            return {...state, profile: action.profile};
+        }
+        case SET_CURRENT_PROFILE_PAGE: {
+            return {...state, currentProfilePage: action.currentProfilePage}
+        }
+
         default:
             return state;
     }
 }
 
 export const addPostAC = () => ({type: ADD_POST})
-export const updNewPostTextAC = (text) =>
-    ({type: UPD_NEW_POST_TEXT, newText: text})
+export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
+export const setCurrentProfilePage = (profile) => ({type: SET_CURRENT_PROFILE_PAGE, profile: profile})
+
 export default profileReduser;
