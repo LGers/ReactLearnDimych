@@ -13,13 +13,19 @@ import {
     unfollow
 } from "../../Redux/users-reducer";
 import {setUserProfile} from "../../Redux/profile-reducer";
+import {withRouter} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
+        //debugger;
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2` //${this.props.id}`).then(response => {
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/${window.location.pathname}`
-        ).then(response =>{
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = '2';
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId//${this.props.id}`).then(response => {
+            // axios.get(`https://social-network.samuraijs.com/api/1.0/${window.location.pathname}`
+        ).then(response => {
             //debugger
             console.log(window.location.pathname);
             console.log(this.props);
@@ -35,13 +41,17 @@ class ProfileContainer extends React.Component {
     };
 }
 
-let mapStateToProps=(state)=>{
+let mapStateToProps = (state) => {
 
     return {
         profile: state.profilePage.profile
 
     }
 }
+
+let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+
 export default ProfileContainer = connect(mapStateToProps,
-    {setUserProfile//, addPost:addPostAC, updNewPostText:updNewPostTextAC
-    })(ProfileContainer);
+    {
+        setUserProfile//, addPost:addPostAC, updNewPostText:updNewPostTextAC
+    })(WithUrlDataContainerComponent);

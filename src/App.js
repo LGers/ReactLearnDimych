@@ -15,13 +15,14 @@ import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/profilePage/ProfileContainer";
 
 const App = () => {
+
     return (
         <Router>
             <div className='appWrapper'>
                 <Header/>
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/Profile" render={() =>
+                    <Route path="/Profile/:userId?" render={() =>
                         <ProfileContainer/>
                     }/>
                     <Route path="/dialogs" render={() =>

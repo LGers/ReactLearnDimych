@@ -1,7 +1,6 @@
 const ADD_POST = 'ADD_POST';
 const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_CURRENT_PROFILE_PAGE = 'SET_CURRENT_PROFILE_PAGE';
 
 let initialState = {
     dataPosts: [
@@ -13,7 +12,6 @@ let initialState = {
     ],
     newPostText: 'mvstudio.by',
     profile: null,
-    currentProfilePage:1
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -39,9 +37,6 @@ const profileReduser = (state = initialState, action) => {
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile};
         }
-        case SET_CURRENT_PROFILE_PAGE: {
-            return {...state, currentProfilePage: action.currentProfilePage}
-        }
 
         default:
             return state;
@@ -51,6 +46,5 @@ const profileReduser = (state = initialState, action) => {
 export const addPostAC = () => ({type: ADD_POST})
 export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
-export const setCurrentProfilePage = (profile) => ({type: SET_CURRENT_PROFILE_PAGE, profile: profile})
 
 export default profileReduser;

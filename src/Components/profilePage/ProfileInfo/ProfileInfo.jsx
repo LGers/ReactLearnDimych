@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={st.decriptionBlock}>
                 <img src={props.profile.photos.large}/>
-                <div>{props.fullName}</div>
+                <div>Имя: {props.profile.fullName}</div>
                 <div>Обо мне: [{props.profile.aboutMe}]</div>
                 <div>Контакты facebook: [{props.profile.contacts.facebook}]</div>
                 <div>Контакты web: [{props.profile.contacts.website}]</div>
