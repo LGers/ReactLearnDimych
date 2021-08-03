@@ -1,31 +1,34 @@
-import React from "react";
-//import UsersAPIComponent from "./UsersAPIComponent";
-import {connect} from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux';
 import {
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    unfollowAC,
-    setUsersTotalCountAC
-} from "../../Redux/users-reducer";
-import * as axios from "axios";
-import Users from "./Users";
+    follow,
+    unfollow,
+    setCurrentPage,
+    setUsers,
+    setTotalUsersCount, toggleIsFetching
+} from '../../Redux/users-reducer';
+import * as axios from 'axios';
+import Users from './Users';
+import Preloader from "../common/preloader/Preloader";
 
-class UsersAPIContainer extends React.Component { // !!! UsersContainer by Dimych
+class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by Dimych
 
 
     componentDidMount() {
-
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentUsersPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items);
-            this.props.setUsersTotalCount(response.data.totalCount);
+            this.props.setTotalUsersCount(response.data.totalCount);
         });
     }
 
     onPageChanged = (pageNumber) => {
+        this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
         });
     }
@@ -37,16 +40,19 @@ class UsersAPIContainer extends React.Component { // !!! UsersContainer by Dimyc
             pages.push(i);
         }
 
-        return <Users
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            currentUsersPage={this.props.currentUsersPage}
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            followClick={this.props.followClick}
-            unfollowClick={this.props.unfollowClick}
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentUsersPage={this.props.currentUsersPage}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
 
-        />
+            />
+        </>
     }
 }
 
@@ -56,28 +62,13 @@ let mapStateToProps=(state)=>{
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentUsersPage: state.usersPage.currentUsersPage
+        currentUsersPage: state.usersPage.currentUsersPage,
+        isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps=(dispatch)=>{
-    return {
-        followClick: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollowClick: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNunber) => {
-            dispatch(setCurrentPageAC(pageNunber));
-        },
-        setUsersTotalCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount));
-        },
-    };
-}
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer); //UsersContainer by Dimych
+const UsersContainer = connect(mapStateToProps,
+    {
+        follow, unfollow, setUsers,
+        setCurrentPage, setTotalUsersCount, toggleIsFetching
+    })(UsersAPIContainer); //UsersContainer by Dimych
 export default UsersContainer;
