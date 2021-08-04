@@ -4,7 +4,7 @@ import * as axios from "axios";
 import {setUsers} from "../../Redux/users-reducer";
 import {connect} from "react-redux";
 import {setAuthUserData} from "../../Redux/auth-reduser";
-import {authMe} from "../../api/api";
+import {authMe, usersAPI} from "../../api/api";
 
 //debugger
 
@@ -15,7 +15,7 @@ class HeaderContainer extends React.Component {
         /*axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
             withCredentials: true
         })*/
-        authMe()
+        usersAPI.authMe()
             .then(response => {
                 // debugger
                 if (response.data.resultCode === 0) {

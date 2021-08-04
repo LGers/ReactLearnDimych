@@ -3,7 +3,7 @@ import st from "./Users.module.css";
 import userPhotoDefault from "../../assets/img/default-user-icon-15.jpg";
 import {NavLink} from "react-router-dom";
 import * as axios from "axios";
-import {setFollow, setUnfollow} from "../../api/api";
+import {setFollow, setUnfollow, usersAPI} from "../../api/api";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -44,7 +44,7 @@ let Users = (props) => {
                                     //         }
                                     //     }
                                     // )
-                                    setUnfollow(u.id).then(response => {
+                                    usersAPI.setUnfollow(u.id).then(response => {
                                         if (response.data.resultCode == 0) {
                                             props.unfollow(u.id);
                                         }
@@ -59,13 +59,11 @@ let Users = (props) => {
                                         //         }
                                         //     }
                                         // )
-                                            setFollow(u.id).then(response => {
-                                            if (response.data.resultCode == 0) {
-                                                props.follow(u.id);
-                                            }
-                                        });
-
-
+                                    usersAPI.setFollow(u.id).then(response => {
+                                        if (response.data.resultCode == 0) {
+                                            props.follow(u.id);
+                                        }
+                                    });
                                     }}>Follow</button>
                             }
 

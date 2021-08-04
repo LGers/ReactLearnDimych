@@ -10,15 +10,16 @@ import {
 import * as axios from 'axios';
 import Users from './Users';
 import Preloader from "../common/preloader/Preloader";
-import {getUsers} from "../../api/api";
+import {usersAPI} from "../../api/api";
+
+//import {getUsers} from "../../api/api";
 
 class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by Dimych
 
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        getUsers(this.props.currentUsersPage, this.props.pageSize).then(data => {
-//debugger
+        usersAPI.getUsers(this.props.currentUsersPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items);
             this.props.setTotalUsersCount(data.totalCount);
@@ -33,7 +34,7 @@ class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by 
         //     {
         //         withCredentials: true
         //     })
-        getUsers(pageNumber, this.props.pageSize)
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
