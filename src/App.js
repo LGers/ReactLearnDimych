@@ -13,13 +13,14 @@ import {
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/profilePage/ProfileContainer";
+import HeaderContainer from "./Components/header/HeaderContainer";
 
 const App = () => {
-
+// debugger
     return (
         <Router>
             <div className='appWrapper'>
-                <Header/>
+                <HeaderContainer />
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     <Route path="/Profile/:userId?" render={() =>
