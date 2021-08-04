@@ -2,6 +2,8 @@ import React from 'react'
 import st from "./Users.module.css";
 import userPhotoDefault from "../../assets/img/default-user-icon-15.jpg";
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
+import {setFollow, setUnfollow} from "../../api/api";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -34,11 +36,37 @@ let Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(u.id)
+                                    // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                                    //     {
+                                    //         withCredentials: true,
+                                    //         headers: {
+                                    //             'API-KEY': 'c6219d09-5e75-4960-a712-f22172abf4fd'
+                                    //         }
+                                    //     }
+                                    // )
+                                    setUnfollow(u.id).then(response => {
+                                        if (response.data.resultCode == 0) {
+                                            props.unfollow(u.id);
+                                        }
+                                    });
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                    props.follow(u.id)
-                                }}>Follow</button>
+
+                                        // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
+                                        //     {withCredentials: true,
+                                        //         headers: {
+                                        //             'API-KEY': 'c6219d09-5e75-4960-a712-f22172abf4fd'
+                                        //         }
+                                        //     }
+                                        // )
+                                            setFollow(u.id).then(response => {
+                                            if (response.data.resultCode == 0) {
+                                                props.follow(u.id);
+                                            }
+                                        });
+
+
+                                    }}>Follow</button>
                             }
 
                         </div>
