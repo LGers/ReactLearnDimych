@@ -7,10 +7,24 @@ h2 {
 .decriptionBlock {
     padding: 10px;
 }
+.decriptionBlock div{
+    padding: 5px;
+}
 img {
     padding: 0;
 }
 .mainImgBlock img{
     width: 890px;
     padding: 0;
+}
+.profileName{
+    color: #105041;
+    font-weight: bold;
+    font-size: 20px;
+}
+.status{
+    padding: 5px;
+    border-bottom: #363535;
+    border-bottom-style: solid;
+    margin-bottom: 10px;
 }
