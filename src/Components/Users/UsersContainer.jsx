@@ -5,14 +5,11 @@ import {
     unfollow,
     setCurrentPage,
     setUsers,
-    setTotalUsersCount, toggleIsFetching
+    setTotalUsersCount, toggleIsFetching, toggleFollowingProgress
 } from '../../Redux/users-reducer';
-import * as axios from 'axios';
 import Users from './Users';
 import Preloader from "../common/preloader/Preloader";
 import {usersAPI} from "../../api/api";
-
-//import {getUsers} from "../../api/api";
 
 class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by Dimych
 
@@ -30,13 +27,9 @@ class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by 
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
 
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-        //     {
-        //         withCredentials: true
-        //     })
         usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
-            this.props.toggleIsFetching(false)
+                this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
         });
     }
@@ -58,6 +51,8 @@ class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by 
                 users={this.props.users}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
 
             />
         </>
@@ -71,12 +66,14 @@ let mapStateToProps=(state)=>{
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentUsersPage: state.usersPage.currentUsersPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 const UsersContainer = connect(mapStateToProps,
     {
         follow, unfollow, setUsers,
-        setCurrentPage, setTotalUsersCount, toggleIsFetching
+        setCurrentPage, setTotalUsersCount, toggleIsFetching,
+        toggleFollowingProgress
     })(UsersAPIContainer); //UsersContainer by Dimych
 export default UsersContainer;

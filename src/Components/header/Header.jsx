@@ -1,9 +1,6 @@
-// import React from 'react'
-
-//import  './Header.css'
 import st from './Header.module.css';
 import {NavLink} from "react-router-dom";
-// debugger
+
 const Header = (props) => {
     return (
         <header className={st.header}>
@@ -17,7 +14,6 @@ const Header = (props) => {
             </div>
         </header>
     )
-
 };
 
 export default Header;

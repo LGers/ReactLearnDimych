@@ -17,10 +17,7 @@ export const usersAPI={
     },
     authMe() {return instance.get(`auth/me`)},
     setFollow (userId) {return instance.post(`follow/${userId}`, {})},
-    setUnfollow (userId) {return instance.delete(`follow/${userId}`)}
+    setUnfollow (userId) {return instance.delete(`follow/${userId}`)},
+    setUserProfile(userId){return instance.get(`profile/${userId}`)}
 }
-
-// export const authMe = () => {return instance.get(`auth/me`)}
-// export const setFollow = (userId) => {return instance.post(`follow/${userId}`, {})}
-// export const setUnfollow = (userId) => {return instance.delete(`follow/${userId}`)}
 
