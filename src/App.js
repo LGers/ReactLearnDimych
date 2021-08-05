@@ -23,13 +23,13 @@ const App = () => {
                 <HeaderContainer />
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/Profile/:userId?" render={() =>
-                        <ProfileContainer/>
+                    <Route path="/Profile/:userId?" render={() =><ProfileContainer/>
                     }/>
+
                     <Route path="/dialogs" render={() =>
                         <DialogsContainer/>}
                     />
-                    <Route path="/users" render={() => <UsersContainer />}
+                    <Route path="/users/:currentPage?" render={() => <UsersContainer />}
                     />
                 </div>
             </div>

@@ -1,10 +1,8 @@
 import React from 'react';
 import ProfilePage from "./ProfilePage";
-//import * as axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../Redux/profile-reducer";
+import {setUserProfile, setUserProfileThunk} from "../../Redux/profile-reducer";
 import {withRouter} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -14,14 +12,14 @@ class ProfileContainer extends React.Component {
         if (!userId) {
             userId = '2';
         }
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            usersAPI.setUserProfile(userId)
-        .then(response => {
-            //debugger
-            console.log(window.location.pathname);
-            console.log(this.props);
-            this.props.setUserProfile(response.data);
-        });
+        this.props.setUserProfileThunk(userId);
+        // usersAPI.setUserProfile(userId)
+        //     .then(response => {
+        //         //debugger
+        //         console.log(window.location.pathname);
+        //         console.log(this.props);
+        //         this.props.setUserProfile(response.data);
+        //     });
     }
 
     render() {
@@ -44,5 +42,6 @@ let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
 export default ProfileContainer = connect(mapStateToProps,
     {
-        setUserProfile
+        //setUserProfile,
+        setUserProfileThunk
     })(WithUrlDataContainerComponent);
