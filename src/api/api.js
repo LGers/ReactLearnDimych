@@ -15,9 +15,15 @@ export const usersAPI={
             return response.data
         });
     },
-    authMe() {return instance.get(`auth/me`)},
+    //authAPI() {return instance.get(`auth/me`)},
     setFollow (userId) {return instance.post(`follow/${userId}`, {})},
     setUnfollow (userId) {return instance.delete(`follow/${userId}`)},
-    setUserProfile(userId){return instance.get(`profile/${userId}`)}
+    // setUserProfile(userId){return instance.get(`profile/${userId}`)}
+    getProfile(userId){return instance.get(`profile/${userId}`)}
+}
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`)
+    }
 }
 

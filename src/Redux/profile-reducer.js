@@ -48,11 +48,13 @@ const profileReduser = (state = initialState, action) => {
 export const addPostAC = () => ({type: ADD_POST})
 export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
+//export const getUserProfile = (userId) => ({type: GET_USER_PROFILE, userId})
 
 //THUNKs
-export const setUserProfileThunk =(userId)=>{
+export const getUserProfile =(userId)=>{
     return (dispatch)=>{
-        usersAPI.setUserProfile(userId)
+        // usersAPI.setUserProfile(userId)
+        usersAPI.getProfile(userId)
             .then(response => {
                 console.log(window.location.pathname);
                 dispatch(setUserProfile(response.data));
