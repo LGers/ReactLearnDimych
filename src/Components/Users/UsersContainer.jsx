@@ -12,6 +12,9 @@ import {
 } from '../../Redux/users-reducer';
 import Preloader from "../common/preloader/Preloader";
 import {withRouter} from "react-router-dom";
+import Redirect from "react-router-dom/es/Redirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by Dimych
 
@@ -30,7 +33,7 @@ class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by 
     }
 
     render() {
-
+        //if (!this.props.isAuth) return <Redirect to={"/login"}/>
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -52,6 +55,7 @@ class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by 
     }
 }
 
+
 let mapStateToProps=(state)=>{
 
     return {
@@ -60,27 +64,35 @@ let mapStateToProps=(state)=>{
         totalUsersCount: state.usersPage.totalUsersCount,
         currentUsersPage: state.usersPage.currentUsersPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        // isAuth: state.auth.isAuth,
     }
 }
-let WithUrlDataContainerComponent = withRouter(UsersAPIContainer); //path users/3/ - dont display!!!???
 
-// const UsersContainer = connect(mapStateToProps,
-export default UsersAPIContainer = connect(mapStateToProps,
-    {
-        unfollowClick,
-        followClick,
-        // followSucces,
-        // unfollowSucces,
-        //toggleFollowingProgress,//???? may be commented
-        //setTotalUsersCount,
-        //toggleIsFetching,
-        //setUsers,
-        setCurrentPage, // may be commented
-        // getUsers: getUsersThunkCreator,
-        getUsers
-        //setPage:getUsersPageThunkCreator
-    // })(UsersAPIContainer); //UsersContainer by Dimych
-    })(WithUrlDataContainerComponent); //UsersContainer by Dimych
-
-//export default UsersContainer;
+export default compose(
+    connect(mapStateToProps, {unfollowClick, followClick, setCurrentPage, getUsers}),
+    withRouter,
+    withAuthRedirect
+)(UsersAPIContainer)
+// let AuthRedirectComponent = withAuthRedirect(UsersAPIContainer) //-----HOC-----
+// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent); //path users/3/ - dont display!!!???
+//
+// // const UsersContainer = connect(mapStateToProps,
+// export default UsersAPIContainer = connect(mapStateToProps,
+//     {
+//         unfollowClick,
+//         followClick,
+//         // followSucces,
+//         // unfollowSucces,
+//         //toggleFollowingProgress,//???? may be commented
+//         //setTotalUsersCount,
+//         //toggleIsFetching,
+//         //setUsers,
+//         setCurrentPage, // may be commented
+//         // getUsers: getUsersThunkCreator,
+//         getUsers
+//         //setPage:getUsersPageThunkCreator
+//     // })(UsersAPIContainer); //UsersContainer by Dimych
+//     })(WithUrlDataContainerComponent); //UsersContainer by Dimych
+//
+// //export default UsersContainer;

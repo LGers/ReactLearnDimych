@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './Components/header/Header';
 import NavBar from './Components/navBar/NavBar';
-import ProfilePage from './Components/profilePage/ProfilePage';
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,9 +12,9 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/profilePage/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";
+import Login from "./Components/Login/Login";
 
 const App = () => {
-// debugger
     return (
         <Router>
             <div className='appWrapper'>
@@ -30,6 +28,8 @@ const App = () => {
                         <DialogsContainer/>}
                     />
                     <Route path="/users/:currentPage?" render={() => <UsersContainer />}
+                    />
+                    <Route path="/login" render={() => <Login />}
                     />
                 </div>
             </div>

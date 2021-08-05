@@ -2,6 +2,7 @@ import React from 'react'
 import st from "./Users.module.css";
 import userPhotoDefault from "../../assets/img/default-user-icon-15.jpg";
 import {NavLink} from "react-router-dom";
+import Redirect from "react-router-dom/es/Redirect";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
