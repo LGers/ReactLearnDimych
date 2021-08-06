@@ -1,8 +1,9 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD_POST';
 const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     dataPosts: [
@@ -14,6 +15,7 @@ let initialState = {
     ],
     newPostText: 'mvstudio.by',
     profile: null,
+    status: "",
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -39,6 +41,9 @@ const profileReduser = (state = initialState, action) => {
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile};
         }
+        case SET_STATUS: {
+            return {...state, status: action.status};
+        }
 
         default:
             return state;
@@ -48,6 +53,7 @@ const profileReduser = (state = initialState, action) => {
 export const addPostAC = () => ({type: ADD_POST})
 export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
+export const setStatus = (status) => ({type: SET_STATUS, status})
 
 //THUNKs
 export const getUserProfile =(userId)=>{
@@ -56,6 +62,30 @@ export const getUserProfile =(userId)=>{
             .then(response => {
                 console.log(window.location.pathname);
                 dispatch(setUserProfile(response.data));
+            });
+    }
+}
+export const getStatus =(userId)=>{
+    return (dispatch)=>{
+        profileAPI.getStatus(userId)
+            .then(response => {
+                dispatch(setStatus(response.data));
+            });
+    }
+}
+export const updateStatus =(status)=>{
+    return (dispatch)=>{
+        // debugger
+        profileAPI.updateStatus(status)
+            .then(response => {
+                // debugger
+                if (response.data.resultCode===0){
+                    dispatch(setStatus(status));
+                }
+                // else {
+                //     //обработчик ошибок
+                // }
+
             });
     }
 }

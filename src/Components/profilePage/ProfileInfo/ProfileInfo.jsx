@@ -1,6 +1,7 @@
 import st from './ProfileInfo.module.css';
 import Preloader from "../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import React from "react";
 
 
 const ProfileInfo = (props) => {
@@ -17,7 +18,10 @@ const ProfileInfo = (props) => {
             <div className={st.decriptionBlock}>
                 <div >Имя: <span className={st.profileName}>{props.profile.fullName}</span></div>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={'Hello samurays ReactJs'}/>
+                <ProfileStatus
+                    status={props.status}
+                    updateStatus={props.updateStatus}
+                />
                 <div>Обо мне: [{props.profile.aboutMe}]</div>
                 <div>Контакты facebook: [{props.profile.contacts.facebook}]</div>
                 <div>Контакты web: [{props.profile.contacts.website}]</div>
