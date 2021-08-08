@@ -1,7 +1,7 @@
 import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD_POST';
-const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
+//const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -15,29 +15,30 @@ let initialState = {
     ],
     newPostText: 'mvstudio.by',
     profile: null,
-    status: "",
+    //status: "",
 };
 
 const profileReduser = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST: {
+            let lastIdNumber = state.dataPosts.length - 1;
+            let newId = String(Number(state.dataPosts[lastIdNumber].id) + 1)
             let newPost = {
-                id: '0',
-                message: state.newPostText,
-                name: 'alik id5 added',
+                id: newId,
+                message: action.newMsg,
+                name: 'alik id5 added',//change name function
                 age: 1000,
                 likesCount: 0
             };
             return {
                 ...state,
                 dataPosts: [...state.dataPosts, newPost],
-                newPostText: ''
             }
         }
-        case UPD_NEW_POST_TEXT: {
-            return {...state, newPostText: action.newText};
-        }
+        // case UPD_NEW_POST_TEXT: {
+        //     return {...state, newPostText: action.newText};
+        // }
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile};
         }
@@ -50,8 +51,8 @@ const profileReduser = (state = initialState, action) => {
     }
 }
 
-export const addPostAC = () => ({type: ADD_POST})
-export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
+export const addPostAC = (newMsg) => ({type: ADD_POST, newMsg: newMsg})
+//export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 
@@ -79,7 +80,7 @@ export const updateStatus =(status)=>{
         profileAPI.updateStatus(status)
             .then(response => {
                 // debugger
-                if (response.data.resultCode===0){
+                if (response.data.resultCode === 0) {
                     dispatch(setStatus(status));
                 }
                 // else {
@@ -89,4 +90,17 @@ export const updateStatus =(status)=>{
             });
     }
 }
+
+/*export const updNewPostText = (text) => { // delete This
+    return (dispatch) => {
+            dispatch(updNewPostTextAC(text))
+    }
+}*/
+
+export const addPost = (postBody) => {
+    return (dispatch) => {
+        dispatch(addPostAC(postBody))
+    }
+}
+
 export default profileReduser;

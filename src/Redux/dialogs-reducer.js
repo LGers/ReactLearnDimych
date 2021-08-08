@@ -1,5 +1,5 @@
 const ADD_MSG = 'ADD_MSG';
-const UPD_NEW_MSG_BODY = 'UPD_NEW_MSG_BODY';
+//const UPD_NEW_MSG_BODY = 'UPD_NEW_MSG_BODY';
 
 let initialState = {
     dataDialogs: [
@@ -15,33 +15,35 @@ let initialState = {
         {id: '3', message: 'I best by React'},
         {id: '4', message: 'and me'}
     ],
-    newMsgBody: ''
+    //newMsgBody: ''
 }
 
 const dialogsReduser = (state = initialState, action) => {
-
     switch (action.type) {
 
         case ADD_MSG: {
-            let newPost = {id: 6, message: state.newMsgBody}
+            let lastIdNumber = state.dataMsgs.length - 1;
+            let newId = Number(state.dataMsgs[lastIdNumber].id) + 1
+            let newPost = {id: newId, message: action.newMsg}
             return {
                 ...state,
-                dataMsgs: [...state.dataMsgs, newPost],
-                newMsgBody: ''
-            };
-        }
-        case UPD_NEW_MSG_BODY: {
-            return {
-                ...state,
-                newMsgBody: action.newMsgBody
+                dataMsgs: [...state.dataMsgs, newPost]
             };
         }
         default:
             return state;
     }
 }
-export const addMessageAC = (body) => ({type: ADD_MSG})
-export const updNewMessageBodyAC = (body) =>
-    ({type: UPD_NEW_MSG_BODY, newMsgBody: body})
+export const addMessageAC = (newMsg) => ({type: ADD_MSG, newMsg: newMsg})
+//export const updNewMessageBodyAC = (body) =>
+//    ({type: UPD_NEW_MSG_BODY, newMsgBody: body})
+
+//thunk s
+export const addMsg = (newMsg) => {
+    return (dispatch)=>
+    {
+        dispatch(addMessageAC(newMsg))
+    }
+}
 
 export default dialogsReduser;
