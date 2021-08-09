@@ -2,19 +2,23 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {requiredField} from "../../Utils/Validaors/Validators";
+import {connect} from "react-redux";
+import {login} from "../../Redux/auth-reduser";
+import {Redirect} from "react-router-dom";
+//import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-                <div>
-                    <Field name="login" component={Input} placeholder={'Login'}
-                           validate={[requiredField]} //,maxLength10]}
-                    />
-                </div>
-                <div>
-                    <Field name="password" component={Input} placeholder={'Password'}
-                           validate={[requiredField]}
-                    />
+            <div>
+                <Field name="email" component={Input} placeholder={'Login (e-mail)'}
+                       validate={[requiredField]} //,maxLength10]}
+                />
+            </div>
+            <div>
+                <Field name="password" component={Input} placeholder={'password'}
+                       validate={[requiredField]} type={'password'}
+                />
                 </div>
                 <div>
                     <Field name="isRememberMe" component={Input} type='checkbox'/> <label>Remember me</label>
@@ -31,14 +35,23 @@ const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 const Login = (props) => {
     const onSubmit = (formData) => {
         console.log(formData)
+        // console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+    if (props.isAuth){
+        return <Redirect to='/profile'/>
     }
     return <div>
         <div>
             <h1>LOGIN</h1>
-            {/*<LoginReduxForm onSubmit/> // this is same \\onSubmit={onSubmit}\\===\\onSubmit\\*/}
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     </div>
 
 }
-export default Login;
+
+const mapStateToProps=(state)=>({
+    isAuth: state.auth.isAuth
+})
+export default connect(mapStateToProps, {login})(Login);
+// export default Login;
