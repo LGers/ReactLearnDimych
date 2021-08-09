@@ -14,11 +14,10 @@ const addPostForm = (props) => {
                     name="newPostMsg"
                     component={Textarea}
                     placeholder={'Enter your message'}
-                    validate={[requiredField,maxLength10]}
                 />
             </div>
             <div>
-                <button>Add message</button>
+                <button>Add post</button>
             </div>
         </form>
     )
