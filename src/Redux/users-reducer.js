@@ -84,11 +84,12 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 
 //thunk s
 
-export const getUsers = (currentUsersPage, pageSize) => {
+export const requestUsers = (currentUsersPage, pageSize) => {
 
     return (dispatch) => {
 
         dispatch(toggleIsFetching(true))
+
         dispatch(setCurrentPage(currentUsersPage))//--->add className to selected page of users
         usersAPI.getUsers(currentUsersPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false))
