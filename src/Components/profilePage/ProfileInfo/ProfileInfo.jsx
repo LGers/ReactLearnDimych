@@ -2,6 +2,7 @@ import st from './ProfileInfo.module.css';
 import Preloader from "../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import React from "react";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 const ProfileInfo = (props) => {
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
             <div className={st.decriptionBlock}>
                 <div >Имя: <span className={st.profileName}>{props.profile.fullName}</span></div>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus
+                <ProfileStatusWithHooks
                     status={props.status}
                     updateStatus={props.updateStatus}
                 />
