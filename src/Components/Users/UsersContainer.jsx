@@ -65,8 +65,9 @@ class UsersAPIContainer extends React.Component { //----- !!! UsersContainer by 
 let mapStateToProps=(state)=>{
 
     return {
+        // users: getUsers(state),
         users: getUsers(state),
-        // users: state.usersPage.users,
+
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentUsersPage: getCurrentUserPage(state),
