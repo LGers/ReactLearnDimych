@@ -57,6 +57,6 @@ let mapStateToProps=(state)=>{
 
 export default compose(
     connect(mapStateToProps, {unfollowClick, followClick, setCurrentPage, getUsers}),
-    withRouter,
-    withAuthRedirect
+    withRouter
+    //withAuthRedirect
 )(UsersAPIContainer)
