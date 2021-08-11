@@ -6,6 +6,7 @@ import Redirect from "react-router-dom/es/Redirect";
 
 const ProfilePage = (props) => {
     //if (props.isAuth===false)return <Redirect to={"/login"}/>
+    console.log('RENDER Profile')
     return (
         <div>
             <ProfileInfo

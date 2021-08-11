@@ -25,15 +25,17 @@ const addPostForm = (props) => {
 }
 const AddMsgReduxForm = reduxForm({form: 'addPost'})(addPostForm)
 
-const MyPosts = (props) => {
-
+const MyPosts=React.memo((props)=> {
+    console.log('RENDER MyPosts')
+    console.log(props)
     const onSubmit = (formData) => {
         props.addPost(formData.newPostMsg)
-        formData.newPostMsg='';
+        formData.newPostMsg = '';
     }
 
     let postEl =
-        props.dataPostsJs.map(p => <Post key={p.id} message={p.message} name={p.name} age={p.age} likesCount={p.likesCount}/>)
+        props.dataPostsJs.map(p => <Post key={p.id} message={p.message} name={p.name} age={p.age}
+                                         likesCount={p.likesCount}/>)
 
     return <div>
         <div><h3>My posts Name of me</h3></div>
@@ -47,6 +49,6 @@ const MyPosts = (props) => {
         </div>
     </div>
 
-};
+})
 
 export default MyPosts;
