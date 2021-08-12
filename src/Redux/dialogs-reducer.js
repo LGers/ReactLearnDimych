@@ -1,4 +1,4 @@
-const ADD_MSG = 'ADD_MSG';
+const ADD_MSG = 'lm-network/dialogs/ADD_MSG';
 //const UPD_NEW_MSG_BODY = 'UPD_NEW_MSG_BODY';
 
 let initialState = {

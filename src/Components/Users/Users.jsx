@@ -1,33 +1,43 @@
 import React from 'react'
-import st from "./Users.module.css";
-import userPhotoDefault from "../../assets/img/default-user-icon-15.jpg";
-import {NavLink} from "react-router-dom";
-import Redirect from "react-router-dom/es/Redirect";
+import Paginator from "../Paginator/Paginator";
+import User from "./User";
 
-let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
+let Users = ({currentUsersPage, totalUsersCount, pageSize, onPageChanged, users, ...props}) => {
+    // let pagesCount = Math.ceil(totalUsersCount / pageSize);
+    // let pages = [];
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i);
+    // }
+// debugger
     return (
         <div>
-            <div>
-                {pages.map(p => {
-                    return <span className={(props.currentUsersPage === p) && st.selectedPage}
-                    // return <span className={(props.currentUsersPage === p)?st.selectedPage: st.pagesPaginator}
-                                 onClick={(e) => {
-                                     props.onPageChanged(p);
-                                 }}>{p}</span>
-                })}
-
-            </div>
+            {/*Paginator component ↓↓↓↓↓ */}
+            <Paginator totalUsersCount={totalUsersCount}
+                       pageSize={pageSize}
+                       onPageChanged={onPageChanged}
+                       currentUsersPage={currentUsersPage}
+            />
             {
-                props.users.map(u => <div key={u.id}>
+                users.map(u =>
+                    <User
+                        user={u}
+                        followingInProgress={props.followingInProgress}
+                        key={u.id}
+                        unfollowClick={props.unfollowClick}
+                        followClick={props.followClick}
+                        key={u.id}
+                    />
+                )
+            }
+        </div>
+    )
+}
+export default Users;
+{/*
+            <div key={u.id}>//---
                     <span>
                         <div>
-                            <NavLink to ={'/profile/'+ u.id}>
+                            <NavLink to={'/profile/' + u.id}>
                                 <img className={st.avaPhoto} src={
                                     u.photos.small != null
                                         ? u.photos.small
@@ -51,16 +61,13 @@ let Users = (props) => {
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            {/*<div>{u.location.country}</div>*/}
                             <div>{'Country'}</div>
-                            {/*<div>{u.location.city}</div>*/}
                             <div>{'City'}</div>
                         </span>
                     </span>
                 </div>)
+                //User----
             }
-        </div>
-    )
-}
+       </div>
+       */}
 
-export default Users;

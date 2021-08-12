@@ -16,8 +16,8 @@ export const getPageSize=(state)=>{
 export const getTotalUsersCount=(state)=>{
     return state.usersPage.totalUsersCount;
 }
-export const getCurrentUserPage=(state)=>{
-    return state.usersPage.currentUserPage;
+export const getCurrentUsersPage=(state)=>{
+    return state.usersPage.currentUsersPage;
 }
 export const getIsFetching=(state)=>{
     return state.usersPage.isFetching;

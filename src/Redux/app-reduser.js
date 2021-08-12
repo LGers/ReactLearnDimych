@@ -1,8 +1,6 @@
-import {authAPI} from "../api/api";
-import {stopSubmit} from "redux-form";
 import {getAuthUserData} from "./auth-reduser";
 
-const INITIALAIZED_SUCCESS = 'INITIALAIZED_SUCCESS';
+const INITIALAIZED_SUCCESS = 'lm-network/app/INITIALAIZED_SUCCESS';
 
 
 let initialState = {
@@ -27,11 +25,15 @@ const appReducer = (state = initialState, action) => {
 export const initialaizedSuccess = () => ({type: INITIALAIZED_SUCCESS})
 
 //thunk s
-export const initializeApp  = () =>(dispastch)=> {
+export const initializeApp = () => (dispastch) => {
     let promise = dispastch(getAuthUserData())
-    promise.then(()=>{
+    promise.then(() => {
         dispastch(initialaizedSuccess())
     })
+}
+export const _initializeApp = () => async (dispastch) => {
+    await dispastch(getAuthUserData())
+    dispastch(initialaizedSuccess())
 }
 
 export default appReducer;

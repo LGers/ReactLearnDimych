@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {
-    withRouter, Route,
+    withRouter, Route, BrowserRouter,
     //BrowserRouter as Router
 } from "react-router-dom";
 
@@ -11,11 +11,12 @@ import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/profilePage/ProfileContainer";
 import HeaderContainer from "./Components/header/HeaderContainer";
 import Login from "./Components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import appReducer, {initializeApp} from "./Redux/app-reduser";
 import {getAuthUserData, logout} from "./Redux/auth-reduser";
 import Preloader from "./Components/common/preloader/Preloader";
+import store from "./Redux/redux-store";
 
 class App extends Component {
     componentDidMount() {
@@ -26,7 +27,6 @@ class App extends Component {
         if (!this.props.initialaized) {return <Preloader/>}
 
         return (
-            //<Router>
             <div className='appWrapper'>
                 <HeaderContainer/>
                 <NavBar/>
@@ -43,7 +43,6 @@ class App extends Component {
                     />
                 </div>
             </div>
-            //</Router>
         );
     }
 }

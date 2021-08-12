@@ -34,7 +34,7 @@ const MyPosts=React.memo((props)=> {
     }
 
     let postEl =
-        props.dataPostsJs.map(p => <Post key={p.id} message={p.message} name={p.name} age={p.age}
+        [...props.dataPostsJs].reverse().map(p => <Post key={p.id} message={p.message} name={p.name} age={p.age}
                                          likesCount={p.likesCount}/>)
 
     return <div>

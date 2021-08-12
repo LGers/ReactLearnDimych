@@ -1,9 +1,9 @@
 import {profileAPI, usersAPI} from "../api/api";
 
-const ADD_POST = 'ADD_POST';
-//const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'lm-network/profile/ADD_POST';
+const DELETE_POST = 'lm-network/profile/DELETE_POST';
+const SET_USER_PROFILE = 'lm-network/profile/SET_USER_PROFILE';
+const SET_STATUS = 'lm-network/profile/SET_STATUS';
 
 let initialState = {
     dataPosts: [
@@ -15,7 +15,6 @@ let initialState = {
     ],
     newPostText: 'mvstudio.by',
     profile: null,
-    //status: "",
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -36,9 +35,22 @@ const profileReduser = (state = initialState, action) => {
                 dataPosts: [...state.dataPosts, newPost],
             }
         }
-        // case UPD_NEW_POST_TEXT: {
-        //     return {...state, newPostText: action.newText};
-        // }
+        case DELETE_POST: {
+            let lastIdNumber = state.dataPosts.length - 1;
+            let newId = String(Number(state.dataPosts[lastIdNumber].id) + 1)
+            let newPost = {
+                id: newId,
+                message: action.newMsg,
+                name: 'alik id5 added',//change name function
+                age: 1000,
+                likesCount: 0
+            };
+            return {
+                ...state,
+                dataPosts: state.dataPosts.filter(p => p.id != action.postId),
+            }
+        }
+
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile};
         }
@@ -52,44 +64,33 @@ const profileReduser = (state = initialState, action) => {
 }
 
 export const addPostAC = (newMsg) => ({type: ADD_POST, newMsg: newMsg})
-//export const updNewPostTextAC = (text) => ({type: UPD_NEW_POST_TEXT, newText: text})
+export const deletePostAC = (postId) => ({type: DELETE_POST, postId: postId})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 
 //THUNKs
-export const getUserProfile =(userId)=>{
-    return (dispatch)=>{
-        usersAPI.getProfile(userId)
-            .then(response => {
-                //console.log(window.location.pathname);
-                dispatch(setUserProfile(response.data));
-            });
-    }
-}
-export const getStatus =(userId)=>{
-    return (dispatch)=>{
-        profileAPI.getStatus(userId)
-            .then(response => {
-                dispatch(setStatus(response.data));
-            });
-    }
-}
-export const updateStatus =(status)=>{
-    return (dispatch)=>{
-        // debugger
-        profileAPI.updateStatus(status)
-            .then(response => {
-                // debugger
-                if (response.data.resultCode === 0) {
-                    dispatch(setStatus(status));
-                }
-                // else {
-                //     //обработчик ошибок
-                // }
+export const getUserProfile = (userId) => async (dispatch) => {
+    let response = await usersAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data));
 
-            });
-    }
 }
+
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
+}
+
+export const updateStatus = (status) => async (dispatch) => {
+
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
+    // else {
+    //     //обработчик ошибок
+    // }
+}
+
 
 /*export const updNewPostText = (text) => { // delete This
     return (dispatch) => {
@@ -97,10 +98,13 @@ export const updateStatus =(status)=>{
     }
 }*/
 
-export const addPost = (postBody) => {
+export const addPost = (postBody) => (dispatch) => dispatch(addPostAC(postBody))
+export const _addPost = (postBody) => { //that's seme how higher string
     return (dispatch) => {
         dispatch(addPostAC(postBody))
     }
 }
+
+
 
 export default profileReduser;

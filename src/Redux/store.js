@@ -2,10 +2,10 @@ import profileReduser from "./profile-reducer";
 import dialogsReduser from "./dialogs-reducer";
 import sidebarReduser from "./sidebar-reducer";
 
-const ADD_POST = 'ADD_POST';
-const UPD_NEW_POST_TEXT = 'UPD_NEW_POST_TEXT';
-const ADD_MSG = 'ADD_MSG';
-const UPD_NEW_MSG_BODY = 'UPD_NEW_MSG_BODY';
+const ADD_POST = 'lm-network/store/ADD_POST';
+const UPD_NEW_POST_TEXT = 'lm-network/store/UPD_NEW_POST_TEXT';
+const ADD_MSG = 'lm-network/store/ADD_MSG';
+const UPD_NEW_MSG_BODY = 'lm-network/store/UPD_NEW_MSG_BODY';
 
 //-Start store-----------------------------
 let store = {

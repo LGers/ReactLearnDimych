@@ -1,14 +1,30 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
+import {createField, Input} from "../common/FormsControls/FormsControls";
 import {requiredField} from "../../Utils/Validaors/Validators";
 import {connect} from "react-redux";
 import {login} from "../../Redux/auth-reduser";
 import {Redirect} from "react-router-dom";
 import st from '../common/FormsControls/FormsControls.Module.css'
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
+    return (
+        <form onSubmit={handleSubmit}>
 
+            {createField('Login (e-mail)', 'email', [requiredField], Input)}
+            {createField('password', 'password', [requiredField], Input, {type: 'passsword'})}
+            {createField(null, 'isRememberMe', null, Input, {type: 'checkbox'}, 'Remember me')}
+            {error && <div className={st.formSummaryError}>
+                {error}
+            </div>}
+            <div>
+                <button>Login</button>
+            </div>
+        </form>
+    )
+}
+const old_LoginForm = (props) => {
+    debugger
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
